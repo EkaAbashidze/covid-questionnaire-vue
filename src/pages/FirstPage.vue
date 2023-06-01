@@ -27,7 +27,15 @@
             class="border border-gray-400 p-2 w-[513px] bg-transparent"
           />
         </div>
+
+        <div class="">
+          <hr class="border-gray-400 w-[237px] mt-[111px]" />
+          <p class="text-sm text-gray-500 mt-[20px] max-w-[300px]">
+            *-ით მონიშნული ველების შევსება სავალდებულოა
+          </p>
+        </div>
       </div>
+
       <div class="w-1/2 flex justify-center items-center mt-[-100px]">
         <img
           src="../../public/images/identification.png"
@@ -36,7 +44,7 @@
       </div>
     </div>
     <div class="flex justify-center mt-10">
-      <router-link to="/second-page">
+      <router-link to="/questionnaire">
         <img
           src="../../public/images/next.svg"
           alt="Next Page Arrow"
@@ -56,7 +64,7 @@ export default {
   },
   data() {
     return {
-      currentPage: "1/4",
+      currentPage: 1,
     };
   },
 };

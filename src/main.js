@@ -4,6 +4,8 @@ import App from './App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import StartPage from './pages/StartPage.vue';
 import FirstPage from './pages/FirstPage.vue';
+import SecondPage from './pages/SecondPage.vue';
+import './assets/fonts/bpg_arial_2009.ttf';
 
 
 const router = createRouter({
@@ -18,6 +20,11 @@ const router = createRouter({
       path: '/identification',
       name: 'identification',
       component: FirstPage,
+    },
+    {
+      path: '/questionnaire',
+      name: 'questionnaire',
+      component: SecondPage,
     }
   ]
 });

@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import StartPage from './pages/StartPage.vue';
 import FirstPage from './pages/FirstPage.vue';
 import SecondPage from './pages/SecondPage.vue';
+import ThirdPage from './pages/ThirdPage.vue';
 import './assets/fonts/bpg_arial_2009.ttf';
 
 
@@ -25,6 +26,11 @@ const router = createRouter({
       path: '/questionnaire',
       name: 'questionnaire',
       component: SecondPage,
+    },
+    {
+      path: '/vaccine',
+      name: 'vaccine',
+      component: ThirdPage,
     }
   ]
 });

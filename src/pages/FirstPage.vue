@@ -1,30 +1,33 @@
 <template>
-  <div class="mx-20">
+  <div class="mx-[200px]">
     <Navbar :page="currentPage" />
-    <div class="flex mt-10">
-      <div class="w-1/2 mr-10">
-        <div class="mb-4">
+    <div class="flex mt-12 justify-between">
+      <div class="">
+        <div class="mb-12">
           <label for="firstName" class="text-lg block mb-2">სახელი*</label>
           <input
+            placeholder="იოსებ"
             type="text"
             id="firstName"
-            class="border border-gray-400 p-2 w-[513px] bg-transparent"
+            class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
           />
         </div>
-        <div class="mb-4">
+        <div class="mb-12">
           <label for="lastName" class="text-lg block mb-2">გვარი*</label>
           <input
+            placeholder="ჯუღაშვილი"
             type="text"
             id="lastName"
-            class="border border-gray-400 p-2 w-[513px] bg-transparent"
+            class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
           />
         </div>
         <div class="mb-4">
           <label for="email" class="text-lg block mb-2">მეილი*</label>
           <input
+            placeholder="fbi@redberry.ge"
             type="email"
             id="email"
-            class="border border-gray-400 p-2 w-[513px] bg-transparent"
+            class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
           />
         </div>
 
@@ -36,7 +39,7 @@
         </div>
       </div>
 
-      <div class="w-1/2 flex justify-center items-center mt-[-100px]">
+      <div class="flex justify-center items-center mt-[-100px]">
         <img
           src="../../public/images/identification.png"
           alt="Identification Image"

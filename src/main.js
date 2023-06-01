@@ -2,21 +2,28 @@ import { createApp } from 'vue';
 import './style.css';
 import App from './App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
-import Start from './components/Start.vue';
+import StartPage from './pages/StartPage.vue';
+import FirstPage from './pages/FirstPage.vue';
 
-const routes = [
-  {
-    path: '/',
-    name: 'Start',
-    component: Start,
-  }
-];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes: [
+    {
+      path: '/',
+      name: 'StartPage',
+      component: StartPage,
+    },
+    {
+      path: '/identification',
+      name: 'identification',
+      component: FirstPage,
+    }
+  ]
 });
 
 const app = createApp(App);
+
 app.use(router);
+
 app.mount('#app');

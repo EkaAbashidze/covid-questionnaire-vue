@@ -74,5 +74,4 @@ export default {
 </script>
 
 <style>
-/* Add any custom styles for the questionnaire page here */
 </style>

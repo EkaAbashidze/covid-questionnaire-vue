@@ -6,6 +6,7 @@ import StartPage from './pages/StartPage.vue';
 import FirstPage from './pages/FirstPage.vue';
 import SecondPage from './pages/SecondPage.vue';
 import ThirdPage from './pages/ThirdPage.vue';
+import FourthPage from './pages/FourthPage.vue';
 import './assets/fonts/bpg_arial_2009.ttf';
 
 
@@ -31,6 +32,11 @@ const router = createRouter({
       path: '/vaccine',
       name: 'vaccine',
       component: ThirdPage,
+    },
+    {
+      path: '/suggestions',
+      name: 'suggestions',
+      component: FourthPage,
     }
   ]
 });

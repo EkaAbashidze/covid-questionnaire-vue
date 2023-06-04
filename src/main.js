@@ -8,6 +8,7 @@ import SecondPage from './pages/SecondPage.vue';
 import ThirdPage from './pages/ThirdPage.vue';
 import FourthPage from './pages/FourthPage.vue';
 import './assets/fonts/bpg_arial_2009.ttf';
+import store from './store/index.js';
 
 
 const router = createRouter({
@@ -44,5 +45,6 @@ const router = createRouter({
 const app = createApp(App);
 
 app.use(router);
+app.use(store);
 
 app.mount('#app');

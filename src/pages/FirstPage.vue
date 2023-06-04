@@ -3,40 +3,48 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="">
-        <div class="mb-12">
-          <label for="firstName" class="text-lg block mb-2">სახელი*</label>
-          <input
-            placeholder="იოსებ"
-            type="text"
-            id="firstName"
-            class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
-          />
-        </div>
-        <div class="mb-12">
-          <label for="lastName" class="text-lg block mb-2">გვარი*</label>
-          <input
-            placeholder="ჯუღაშვილი"
-            type="text"
-            id="lastName"
-            class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
-          />
-        </div>
-        <div class="mb-4">
-          <label for="email" class="text-lg block mb-2">მეილი*</label>
-          <input
-            placeholder="fbi@redberry.ge"
-            type="email"
-            id="email"
-            class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
-          />
-        </div>
+        <form @submit.prevent="">
+          <div class="mb-12">
+            <label for="firstName" class="text-lg block mb-2">სახელი*</label>
+            <input
+              placeholder="იოსებ"
+              type="text"
+              id="firstName"
+              class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
+              v-model="firstName"
+              @input="updateFirstName"
+            />
+          </div>
+          <div class="mb-12">
+            <label for="lastName" class="text-lg block mb-2">გვარი*</label>
+            <input
+              placeholder="ჯუღაშვილი"
+              type="text"
+              id="lastName"
+              class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
+              v-model="lastName"
+              @input="updateLastName"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="email" class="text-lg block mb-2">მეილი*</label>
+            <input
+              placeholder="fbi@redberry.ge"
+              type="email"
+              id="email"
+              class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
+              v-model="email"
+              @input="updateEmail"
+            />
+          </div>
 
-        <div class="">
-          <hr class="border-gray-400 w-[237px] mt-[111px]" />
-          <p class="text-sm text-gray-500 mt-[20px] max-w-[300px]">
-            *-ით მონიშნული ველების შევსება სავალდებულოა
-          </p>
-        </div>
+          <div class="">
+            <hr class="border-gray-400 w-[237px] mt-[111px]" />
+            <p class="text-sm text-gray-500 mt-[20px] max-w-[300px]">
+              *-ით მონიშნული ველების შევსება სავალდებულოა
+            </p>
+          </div>
+        </form>
       </div>
 
       <div class="flex justify-center items-center mt-[-100px]">
@@ -68,7 +76,21 @@ export default {
   data() {
     return {
       currentPage: 1,
+      firstName: "",
+      lastName: "",
+      email: "",
     };
+  },
+  methods: {
+    updateFirstName(event) {
+      this.$store.commit("updateFirstName", event.target.value);
+    },
+    updateLastName(event) {
+      this.$store.commit("updateLastName", event.target.value);
+    },
+    updateEmail(event) {
+      this.$store.commit("updateEmail", event.target.value);
+    },
   },
 };
 </script>

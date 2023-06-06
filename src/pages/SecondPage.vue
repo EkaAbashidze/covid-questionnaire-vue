@@ -6,16 +6,37 @@
         <div class="mb-12">
           <label class="text-lg block mb-2">გაქვს გადატანილი Covid-19?*</label>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="covidStatus">კი</label>
+            <input
+              type="radio"
+              id="covidStatusYes"
+              class="mr-2"
+              value="კი"
+              v-model="covidStatus"
+              @change="updateCovidStatus"
+            />
+            <label for="covidStatusYes">კი</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="noCovidStatus">არა</label>
+            <input
+              type="radio"
+              id="covidStatusNo"
+              class="mr-2"
+              value="არა"
+              v-model="covidStatus"
+              @change="updateCovidStatus"
+            />
+            <label for="covidStatusNo">არა</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="recentCovidStatus">ახლა მაქვს</label>
+            <input
+              type="radio"
+              id="covidStatusNow"
+              class="mr-2"
+              value="ახლა მაქვს"
+              v-model="covidStatus"
+              @change="updateCovidStatus"
+            />
+            <label for="covidStatusNow">ახლა მაქვს</label>
           </div>
         </div>
         <div class="mb-12">
@@ -23,12 +44,26 @@
             >ანტისხეულების ტესტი გაქვს გაკეთებული?*</label
           >
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="antibodyTestYes">კი</label>
+            <input
+              type="radio"
+              id="antibodyTest"
+              class="mr-2"
+              :value="true"
+              v-model="antibodyTest"
+              @change="updateAntibodyTest"
+            />
+            <label for="antibodyTest">კი</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="antibodyTestNo">არა</label>
+            <input
+              type="radio"
+              id="antibodyTest"
+              class="mr-2"
+              :value="false"
+              v-model="antibodyTest"
+              @change="updateAntibodyTest"
+            />
+            <label for="antibodyTest">არა</label>
           </div>
         </div>
         <div class="mb-4">
@@ -40,14 +75,16 @@
             <input
               type="text"
               placeholder="რიცხვი"
-              id="testResult"
+              id="antibodyCount"
               class="border border-gray-400 p-2 h-[50px] bg-transparent px-5 mr-2 w-[513px]"
+              v-model="antibodyCount.testDate"
             />
             <input
               type="text"
               placeholder="ანტისხეულების რაოდენობა"
               id="antibodyCount"
               class="border border-gray-400 p-2 h-[50px] bg-transparent px-5 w-[513px]"
+              v-model="antibodyCount.number"
             />
           </div>
         </div>
@@ -60,6 +97,7 @@
             type="date"
             placeholder="დდ/თთ/წწ"
             id="covidPeriod"
+            v-model="covidPeriod"
             class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
           />
         </div>
@@ -101,7 +139,34 @@ export default {
   data() {
     return {
       currentPage: 2,
+      covidStatus: null,
+      antibodyTest: null,
+      antibodyCount: { testDate: "", number: null },
+      covidPeriod: "",
     };
+  },
+  methods: {
+    updateCovidStatus(event) {
+      this.$store.commit("updateUserData", {
+        property: "had_covid",
+        value: event.target.value,
+      });
+    },
+
+    updateAntibodyTest(event) {
+      this.$store.commit("updateUserData", {
+        property: "had_antibody_test",
+        value: event.target.value,
+      });
+    },
+    updateAntibodyCount(event, field) {
+      const property =
+        field === "testDate" ? "antibodies.test_date" : "antibodies.number";
+      this.$store.commit("updateUserData", {
+        property,
+        value: event.target.value,
+      });
+    },
   },
 };
 </script>

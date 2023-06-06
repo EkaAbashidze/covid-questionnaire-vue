@@ -4,37 +4,29 @@ const store = createStore({
   state() {
     return {
       userData: {
-        firstName: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
         email: '',
-        hadCovid: '',
-        hadAntibodyTest: false,
+        had_covid: '',
+        had_antibody_test: false,
         antibodies: {
-          testDate: '',
+          test_date: '',
           number: 0
         },
-        hadVaccine: false,
-        vaccinationStage: '',
-        nonFormalMeetings: '',
-        numberOfDaysFromOffice: 0,
-        whatAboutMeetingsInLive: '',
-        opinionAboutUs: ''
+        had_vaccine: false,
+        vaccination_stage: '',
+        non_formal_meetings: '',
+        number_of_days_from_office: 0,
+        what_about_meetings_in_live: '',
+        tell_us_your_opinion_about_us: ''
       }
     }
   },
   mutations: {
-    updateFirstName(state, value) {
-      console.log('Updating firstName:', value);
-      state.userData.firstName = value;
-    },
-    updateLastName(state, value) {
-      console.log('Updating lastName:', value);
-      state.userData.lastName = value;
-    },
-    updateEmail(state, value) {
-      console.log('Updating email:', value);
-      state.userData.email = value;
-    },
+    updateUserData(state, data) {
+      state.userData[data.property] = data.value;
+      console.log('Updating firstName:', state.userData);
+    }
   },
 })
 

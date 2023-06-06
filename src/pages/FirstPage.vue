@@ -83,13 +83,22 @@ export default {
   },
   methods: {
     updateFirstName(event) {
-      this.$store.commit("updateFirstName", event.target.value);
+      this.$store.commit("updateUserData", {
+        property: "first_name",
+        value: event.target.value,
+      });
     },
     updateLastName(event) {
-      this.$store.commit("updateLastName", event.target.value);
+      this.$store.commit("updateUserData", {
+        property: "last_name",
+        value: event.target.value,
+      });
     },
     updateEmail(event) {
-      this.$store.commit("updateEmail", event.target.value);
+      this.$store.commit("updateUserData", {
+        property: "email",
+        value: event.target.value,
+      });
     },
   },
 };

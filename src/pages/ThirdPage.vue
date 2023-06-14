@@ -6,29 +6,66 @@
         <div class="mb-12">
           <label class="text-lg block mb-2">უკვე აცრილი ხარ?*</label>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="covidStatus">კი</label>
+            <input
+              type="radio"
+              id="vaccineStatus"
+              class="mr-2"
+              value="yes"
+              v-model="vaccineStatus"
+              @change="updateVaccineStatus"
+            />
+
+            <label for="vaccineStatus">კი</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="noCovidStatus">არა</label>
+            <input
+              type="radio"
+              id="vaccineStatus"
+              class="mr-2"
+              value="no"
+              v-model="vaccineStatus"
+              @change="updateVaccineStatus"
+            />
+            <label for="vaccineStatus">არა</label>
           </div>
         </div>
         <div class="mb-12">
           <label class="text-lg block mb-2">აირჩიე რა ეტაპზე ხარ*</label>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="firstDose"
+            <input
+              type="radio"
+              id="stage"
+              class="mr-2"
+              value="first_dosage_and_registered_on_the_second"
+              v-model="stage"
+              @change="updateStage"
+            />
+
+            <label for="stage"
               >პირველი დოზა და დარეგისტრირებული ვარ მეორეზე</label
             >
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="fullyVaccinated">სრულად აცრილი ვარ</label>
+            <input
+              type="radio"
+              id="stage"
+              class="mr-2"
+              value="fully_vaccinated"
+              v-model="stage"
+              @change="updateStage"
+            />
+            <label for="stage">სრულად აცრილი ვარ</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="firstDoseNoRegistration"
+            <input
+              type="radio"
+              id="stage"
+              class="mr-2"
+              value="first_dosage_and_not_registered_yet"
+              v-model="stage"
+              @change="updateStage"
+            />
+            <label for="stage"
               >პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე</label
             >
           </div>
@@ -36,20 +73,38 @@
         <div class="mb-4">
           <label class="text-lg block mb-2">რას ელოდები?*</label>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="waitingForRegistration"
-              >დარეგისტრირებული ვარ და ველოდები რიცხვს</label
-            >
+            <input
+              type="radio"
+              id="waiting"
+              class="mr-2"
+              value="registered_and_waiting"
+              v-model="waiting"
+              @change="updateWaiting"
+            />
+            <label for="waiting">დარეგისტრირებული ვარ და ველოდები რიცხვს</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="notPlanning">არ ვგეგმავ</label>
+            <input
+              type="radio"
+              id="waiting"
+              class="mr-2"
+              value="not_planning"
+              v-model="waiting"
+              @change="updateWaiting"
+            />
+
+            <label for="waiting">არ ვგეგმავ</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
-            <label for="recentlyRecovered"
-              >გადატანილი მაქვს და ვგეგმავ აცრას</label
-            >
+            <input
+              type="radio"
+              id="waiting"
+              class="mr-2"
+              value="had_covid_and_planning_to_be_vaccinated"
+              v-model="waiting"
+              @change="updateWaiting"
+            />
+            <label for="waiting">გადატანილი მაქვს და ვგეგმავ აცრას</label>
           </div>
         </div>
         <div>
@@ -103,7 +158,30 @@ export default {
   data() {
     return {
       currentPage: 3,
+      vaccineStatus: null,
+      stage: null,
+      waiting: null,
     };
+  },
+  methods: {
+    updateVaccineStatus(event) {
+      this.$store.commit("updateUserData", {
+        property: "had_vaccine",
+        value: event.target.value,
+      });
+    },
+    updateStage(event) {
+      this.$store.commit("updateUserData", {
+        property: "vaccination_stage",
+        value: event.target.value,
+      });
+    },
+    updateWaiting(event) {
+      this.$store.commit("updateUserData", {
+        property: "i_am_waiting",
+        value: event.target.value,
+      });
+    },
   },
 };
 </script>

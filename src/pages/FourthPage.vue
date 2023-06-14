@@ -22,19 +22,48 @@
             შეხვედრები, სადაც ყველა სურვილისამებრ ჩაერთვება?*</label
           >
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
+            <input
+              type="radio"
+              id="nonFormalMeetings"
+              class="mr-2"
+              value="twice_a_week"
+              v-model="nonFormalMeetings"
+              @change="updateNonFormal"
+            />
+
             <label>კვირაში ორჯერ</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
+            <input
+              type="radio"
+              id="nonFormalMeetings"
+              class="mr-2"
+              value="once_a_week"
+              v-model="nonFormalMeetings"
+              @change="updateNonFormal"
+            />
             <label>კვირაში ერთხელ</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
+            <input
+              type="radio"
+              id="nonFormalMeetings"
+              class="mr-2"
+              value="once_in_a_two_weeks"
+              v-model="nonFormalMeetings"
+              @change="updateNonFormal"
+            />
             <label>ორ კვირაში ერთხელ</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
+            <input
+              type="radio"
+              id="nonFormalMeetings"
+              class="mr-2"
+              value="once_in_a_month"
+              v-model="nonFormalMeetings"
+              @change="updateNonFormal"
+            />
             <label>თვეში ერთხელ</label>
           </div>
         </div>
@@ -43,27 +72,70 @@
             >კვირაში რამდენი დღე ისურვებდი ოფისიდან მუშაობას?*</label
           >
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
+            <input
+              type="radio"
+              id="officeDays"
+              class="mr-2"
+              value="0"
+              v-model="officeDays"
+              @change="updateOfficeDays"
+            />
+
             <label>0</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
+            <input
+              type="radio"
+              id="officeDays"
+              class="mr-2"
+              value="1"
+              v-model="officeDays"
+              @change="updateOfficeDays"
+            />
             <label>1</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
+            <input
+              type="radio"
+              id="officeDays"
+              class="mr-2"
+              value="2"
+              v-model="officeDays"
+              @change="updateOfficeDays"
+            />
             <label>2</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
+            <input
+              type="radio"
+              id="officeDays"
+              class="mr-2"
+              value="3"
+              v-model="officeDays"
+              @change="updateOfficeDays"
+            />
             <label>3</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
+            <input
+              type="radio"
+              id="officeDays"
+              class="mr-2"
+              value="4"
+              v-model="officeDays"
+              @change="updateOfficeDays"
+            />
             <label>4</label>
           </div>
           <div class="flex items-center">
-            <input type="checkbox" id="" class="mr-2" />
+            <input
+              type="radio"
+              id="officeDays"
+              class="mr-2"
+              value="5"
+              v-model="officeDays"
+              @change="updateOfficeDays"
+            />
             <label>5</label>
           </div>
         </div>
@@ -73,8 +145,10 @@
           >
           <div class="flex items-center">
             <textarea
-              type="checkbox"
-              id=""
+              type="radio"
+              id="liveMeetings"
+              v-model="liveMeetings"
+              @change="updateLiveMeetings"
               class="mr-2 border border-gray-400 p-2 w-[513px] h-[184px] bg-transparent px-5 mb-12"
             ></textarea>
           </div>
@@ -86,8 +160,10 @@
           >
           <div class="flex items-center">
             <textarea
-              type="checkbox"
-              id=""
+              type="radio"
+              id="liveMeetings"
+              v-model="opinion"
+              @change="updateOpinion"
               class="mr-2 border border-gray-400 p-2 w-[513px] h-[184px] bg-transparent px-5 mb-12"
             ></textarea>
           </div>
@@ -142,7 +218,38 @@ export default {
   data() {
     return {
       currentPage: 4,
+
+      nonFormalMeetings: null,
+      officeDays: null,
+      liveMeetings: null,
+      opinion: null,
     };
+  },
+  methods: {
+    updateNonFormal(event) {
+      this.$store.commit("updateUserData", {
+        property: "non_formal_meetings",
+        value: event.target.value,
+      });
+    },
+    updateOfficeDays(event) {
+      this.$store.commit("updateUserData", {
+        property: "number_of_days_from_office",
+        value: +event.target.value,
+      });
+    },
+    updateLiveMeetings(event) {
+      this.$store.commit("updateUserData", {
+        property: "what_about_meetings_in_live",
+        value: event.target.value,
+      });
+    },
+    updateOpinion(event) {
+      this.$store.commit("updateUserData", {
+        property: "tell_us_your_opinion_about_us",
+        value: event.target.value,
+      });
+    },
   },
 };
 </script>

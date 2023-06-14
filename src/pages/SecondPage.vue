@@ -10,7 +10,7 @@
               type="radio"
               id="covidStatusYes"
               class="mr-2"
-              value="კი"
+              value="yes"
               v-model="covidStatus"
               @change="updateCovidStatus"
             />
@@ -21,7 +21,7 @@
               type="radio"
               id="covidStatusNo"
               class="mr-2"
-              value="არა"
+              value="no"
               v-model="covidStatus"
               @change="updateCovidStatus"
             />
@@ -32,7 +32,7 @@
               type="radio"
               id="covidStatusNow"
               class="mr-2"
-              value="ახლა მაქვს"
+              value="have_right_now"
               v-model="covidStatus"
               @change="updateCovidStatus"
             />
@@ -73,18 +73,20 @@
           >
           <div class="flex flex-col gap-[25px]">
             <input
-              type="text"
+              type="date"
               placeholder="რიცხვი"
               id="antibodyCount"
               class="border border-gray-400 p-2 h-[50px] bg-transparent px-5 mr-2 w-[513px]"
               v-model="antibodyCount.testDate"
+              @input="updateAntibodyCount($event, antibodyCount.testDate)"
             />
             <input
-              type="text"
+              type="number"
               placeholder="ანტისხეულების რაოდენობა"
               id="antibodyCount"
               class="border border-gray-400 p-2 h-[50px] bg-transparent px-5 w-[513px]"
               v-model="antibodyCount.number"
+              @input="updateAntibodyCount($event, 'number')"
             />
           </div>
         </div>
@@ -99,6 +101,7 @@
             id="covidPeriod"
             v-model="covidPeriod"
             class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
+            @change="updateCovidPeriod"
           />
         </div>
       </div>
@@ -160,10 +163,24 @@ export default {
       });
     },
     updateAntibodyCount(event, field) {
-      const property =
-        field === "testDate" ? "antibodies.test_date" : "antibodies.number";
+      const value =
+        field === "testDate"
+          ? {
+              test_date: event.target.value,
+              number: this.antibodyCount.number,
+            }
+          : {
+              test_date: this.antibodyCount.testDate,
+              number: +event.target.value,
+            };
       this.$store.commit("updateUserData", {
-        property,
+        property: "antibodies",
+        value,
+      });
+    },
+    updateCovidPeriod(event) {
+      this.$store.commit("updateUserData", {
+        property: "covid_sickness_date",
         value: event.target.value,
       });
     },

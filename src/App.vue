@@ -13,6 +13,4 @@ export default {
 </script>
 
 <style>
-.route-enter-active {
-}
 </style>

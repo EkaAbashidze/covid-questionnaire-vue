@@ -7,14 +7,27 @@ const store = createStore({
         first_name: '',
         last_name: '',
         email: '',
+
         had_covid: '',
+
         had_antibody_test: false,
+
+
+        covid_sickness_date: '',
+
         antibodies: {
           test_date: '',
           number: 0
         },
+
         had_vaccine: false,
         vaccination_stage: '',
+        //
+
+        i_am_waiting: '',
+
+        //
+
         non_formal_meetings: '',
         number_of_days_from_office: 0,
         what_about_meetings_in_live: '',
@@ -25,7 +38,7 @@ const store = createStore({
   mutations: {
     updateUserData(state, data) {
       state.userData[data.property] = data.value;
-      console.log('Updating firstName:', state.userData);
+      console.log('Updating :', state.userData);
     }
   },
 })

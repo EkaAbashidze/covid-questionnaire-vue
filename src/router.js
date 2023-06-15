@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import StartPage from './pages/StartPage.vue';
-import FirstPage from './pages/FirstPage.vue';
-import SecondPage from './pages/SecondPage.vue';
-import ThirdPage from './pages/ThirdPage.vue';
-import FourthPage from './pages/FourthPage.vue';
+
+
+const StartPage = () => import('./pages/StartPage.vue');
+const FirstPage = () => import('./pages/FirstPage.vue');
+const SecondPage = () => import('./pages/SecondPage.vue');
+const ThirdPage = () => import('./pages/ThirdPage.vue');
+const FourthPage = () => import('./pages/FourthPage.vue');
+
 
 const router = createRouter({
   history: createWebHistory(),

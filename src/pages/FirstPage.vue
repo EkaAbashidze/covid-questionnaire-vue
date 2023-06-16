@@ -68,10 +68,14 @@
 
 <script>
 import Navbar from "../components/Navbar.vue";
+import { Field, Form, ErrorMessage } from "vee-validate";
 
 export default {
   components: {
     Navbar,
+    Field,
+    Form,
+    ErrorMessage,
   },
   data() {
     return {

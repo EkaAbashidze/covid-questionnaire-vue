@@ -28,14 +28,17 @@
           </div>
           <div class="mb-4">
             <label for="email" class="text-lg block mb-2">მეილი*</label>
-            <input
-              placeholder="fbi@redberry.ge"
-              type="email"
-              id="email"
-              class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
-              v-model="email"
-              @input="updateEmail"
-            />
+            <Field name="email" rules="required|email">
+              <input
+                placeholder="fbi@redberry.ge"
+                type="email"
+                id="email"
+                class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
+                v-model="email"
+                @input="updateEmail"
+              />
+              <ErrorMessage name="email" class="text-red-500" />
+            </Field>
           </div>
 
           <div class="">

@@ -2,10 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 
 const StartPage = () => import('./pages/StartPage.vue');
-const FirstPage = () => import('./pages/FirstPage.vue');
-const SecondPage = () => import('./pages/SecondPage.vue');
-const ThirdPage = () => import('./pages/ThirdPage.vue');
-const FourthPage = () => import('./pages/FourthPage.vue');
+const identification = () => import('./pages/Identification.vue');
+const Questionnaire = () => import('./pages/Questionnaire.vue');
+const Vaccine = () => import('./pages/Vaccine.vue');
+const Suggestions = () => import('./pages/Suggestions.vue');
 
 
 const router = createRouter({
@@ -19,22 +19,22 @@ const router = createRouter({
     {
       path: '/identification',
       name: 'identification',
-      component: FirstPage,
+      component: identification,
     },
     {
       path: '/questionnaire',
       name: 'questionnaire',
-      component: SecondPage,
+      component: Questionnaire,
     },
     {
       path: '/vaccine',
       name: 'vaccine',
-      component: ThirdPage,
+      component: Vaccine,
     },
     {
       path: '/suggestions',
       name: 'suggestions',
-      component: FourthPage,
+      component: Suggestions,
     }
   ]
 });

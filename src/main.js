@@ -1,22 +1,17 @@
 import { createApp } from 'vue';
 import './style.css';
 import App from './App.vue';
-import { createRouter, createWebHistory } from 'vue-router';
-import Start from './components/Start.vue';
+import './assets/fonts/bpg_arial_2009.ttf';
+import store from './store/index.js';
+import router from './router.js';
 
-const routes = [
-  {
-    path: '/',
-    name: 'Start',
-    component: Start,
-  }
-];
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
+import veevalidateconfig from './veevalidateconfig';
 
 const app = createApp(App);
+
+veevalidateconfig();
+
 app.use(router);
+app.use(store);
+
 app.mount('#app');

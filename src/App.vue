@@ -1,6 +1,8 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div>
+    <transition>
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -11,5 +13,4 @@ export default {
 </script>
 
 <style>
-/* Your styles here */
 </style>

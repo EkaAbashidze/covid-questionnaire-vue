@@ -8,6 +8,13 @@ defineRule('required', value => {
     return true;
 });
 
+defineRule('radio', value => {
+    if (!value || !value.length) {
+        return 'გთხოვთ, შეავსოთ ველი';
+    }
+    return true;
+});
+
 defineRule('min', value => {
     if (!value || value.length < 3) {
         return 'სახელის ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან';
@@ -53,19 +60,13 @@ defineRule('alphalast', (value) => {
 });
 
 
+defineRule('email', value => {
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+        return 'თქვენ მიერ შეყვანილი მეილი არასწორია!';
+    }
 
-
-// defineRule('email', value => {
-//     // Field is empty, should pass
-//     if (!value || !value.length) {
-//         return true;
-//     }
-//     // Check if email
-//     if (!/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/.test(value)) {
-//         return 'Alooo!';
-//     }
-//     return true;
-// });
-
-// defineRule('required', required);
-// defineRule('email', email);
+    if (!/@redberry\.ge$/i.test(value)) {
+        return 'გთხოვთ დარეგისტრირდეთ Redberry-ს მეილით (youremail@redberry.ge)';
+    }
+    return true;
+});

@@ -12,10 +12,10 @@
                 type="radio"
                 id="vaccineStatus"
                 class="mr-2"
-                value="yes"
+                :value="true"
                 v-model="vaccineStatus"
                 @change="updateVaccineStatus"
-                rules="radio"
+                rules="boolean"
               />
 
               <label for="vaccineStatus">კი</label>
@@ -26,10 +26,10 @@
                 type="radio"
                 id="vaccineStatus"
                 class="mr-2"
-                value="no"
+                :value="false"
                 v-model="vaccineStatus"
                 @change="updateVaccineStatus"
-                rules="radio"
+                rules="boolean"
               />
               <label for="vaccineStatus">არა</label>
             </div>
@@ -198,7 +198,7 @@ export default {
     updateVaccineStatus(event) {
       this.$store.commit("updateUserData", {
         property: "had_vaccine",
-        value: event.target.value,
+        value: event.target.value === "true",
       });
     },
     updateStage(event) {
@@ -214,7 +214,7 @@ export default {
       });
     },
     submitForm(event) {
-      this.$router.push("/questionnaire");
+      this.$router.push("/suggestions");
     },
   },
 };

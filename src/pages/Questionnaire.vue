@@ -52,7 +52,7 @@
               >ანტისხეულების ტესტი გაქვს გაკეთებული?*</label
             >
             <div class="flex items-center">
-              <Field
+              <input
                 name="antibodyTest"
                 type="radio"
                 class="mr-2"
@@ -64,7 +64,7 @@
               <label for="antibodyTest">კი</label>
             </div>
             <div class="flex items-center">
-              <Field
+              <input
                 name="antibodyTest"
                 type="radio"
                 class="mr-2"
@@ -76,7 +76,6 @@
               <label for="antibodyTest">არა</label>
             </div>
           </div>
-          <ErrorMessage name="antibodyTest" class="text-red-500" />
 
           <div class="mb-4">
             <label class="text-lg block mb-2"
@@ -84,7 +83,7 @@
               ანტისხეულების რაოდენობა*</label
             >
             <div class="flex flex-col gap-[25px]">
-              <Field
+              <input
                 name="antibody"
                 type="date"
                 placeholder="რიცხვი"
@@ -93,7 +92,7 @@
                 @input="updateAntibodyCount($event, 'test_date')"
                 rules="radio"
               />
-              <Field
+              <input
                 name="antibody2"
                 type="number"
                 placeholder="ანტისხეულების რაოდენობა"
@@ -103,8 +102,6 @@
                 rules="radio"
               />
             </div>
-            <ErrorMessage name="antibody" class="text-red-500" />
-            <ErrorMessage name="antibody2" class="text-red-500" />
           </div>
           <div class="">
             <label class="text-lg block mb-2"

@@ -275,7 +275,7 @@ export default {
       });
     },
     submitForm(event) {
-      this.$router.push("/questionnaire");
+      this.$router.push("/thankyou");
     },
   },
 };

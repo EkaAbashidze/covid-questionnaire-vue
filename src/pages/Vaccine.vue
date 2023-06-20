@@ -39,7 +39,7 @@
           <div class="mb-12">
             <label class="text-lg block mb-2">აირჩიე რა ეტაპზე ხარ*</label>
             <div class="flex items-center">
-              <Field
+              <input
                 name="stage"
                 type="radio"
                 id="stage"
@@ -47,7 +47,6 @@
                 value="first_dosage_and_registered_on_the_second"
                 v-model="stage"
                 @change="updateStage"
-                rules="radio"
               />
 
               <label for="stage"
@@ -55,7 +54,7 @@
               >
             </div>
             <div class="flex items-center">
-              <Field
+              <input
                 name="stage"
                 type="radio"
                 id="stage"
@@ -63,12 +62,11 @@
                 value="fully_vaccinated"
                 v-model="stage"
                 @change="updateStage"
-                rules="radio"
               />
               <label for="stage">სრულად აცრილი ვარ</label>
             </div>
             <div class="flex items-center">
-              <Field
+              <input
                 name="stage"
                 type="radio"
                 id="stage"
@@ -76,19 +74,17 @@
                 value="first_dosage_and_not_registered_yet"
                 v-model="stage"
                 @change="updateStage"
-                rules="radio"
               />
               <label for="stage"
                 >პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე</label
               >
             </div>
           </div>
-          <ErrorMessage name="stage" class="text-red-500" />
 
           <div class="mb-4">
             <label class="text-lg block mb-2">რას ელოდები?*</label>
             <div class="flex items-center">
-              <Field
+              <input
                 name="waiting"
                 type="radio"
                 id="waiting"
@@ -96,14 +92,13 @@
                 value="registered_and_waiting"
                 v-model="waiting"
                 @change="updateWaiting"
-                rules="radio"
               />
               <label for="waiting"
                 >დარეგისტრირებული ვარ და ველოდები რიცხვს</label
               >
             </div>
             <div class="flex items-center">
-              <Field
+              <input
                 name="waiting"
                 type="radio"
                 id="waiting"
@@ -111,13 +106,12 @@
                 value="not_planning"
                 v-model="waiting"
                 @change="updateWaiting"
-                rules="radio"
               />
 
               <label for="waiting">არ ვგეგმავ</label>
             </div>
             <div class="flex items-center">
-              <Field
+              <input
                 name="waiting"
                 type="radio"
                 id="waiting"
@@ -125,12 +119,10 @@
                 value="had_covid_and_planning_to_be_vaccinated"
                 v-model="waiting"
                 @change="updateWaiting"
-                rules="radio"
               />
               <label for="waiting">გადატანილი მაქვს და ვგეგმავ აცრას</label>
             </div>
           </div>
-          <ErrorMessage name="waiting" class="text-red-500" />
 
           <div>
             <p>რომ არ გადადო, ბარემ ახლავე დარეგისტრირდი</p>

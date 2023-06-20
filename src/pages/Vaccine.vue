@@ -186,27 +186,54 @@ export default {
       waiting: null,
     };
   },
+  created() {
+    this.loadFormData();
+  },
   methods: {
     updateVaccineStatus(event) {
       this.$store.commit("updateUserData", {
         property: "had_vaccine",
         value: event.target.value === "true",
       });
+      this.vaccineStatus = event.target.value === "true";
+      this.saveFormData();
     },
     updateStage(event) {
       this.$store.commit("updateUserData", {
         property: "vaccination_stage",
         value: event.target.value,
       });
+      this.stage = event.target.value;
+      this.saveFormData();
     },
     updateWaiting(event) {
       this.$store.commit("updateUserData", {
         property: "i_am_waiting",
         value: event.target.value,
       });
+      this.waiting = event.target.value;
+      this.saveFormData();
     },
     submitForm(event) {
+      this.saveFormData();
       this.$router.push("/suggestions");
+    },
+    saveFormData() {
+      const formData = {
+        vaccineStatus: this.vaccineStatus,
+        stage: this.stage,
+        waiting: this.waiting,
+      };
+      localStorage.setItem("formDataPage3", JSON.stringify(formData));
+    },
+    loadFormData() {
+      const formData = localStorage.getItem("formDataPage3");
+      if (formData) {
+        const parsedData = JSON.parse(formData);
+        this.vaccineStatus = parsedData.vaccineStatus;
+        this.stage = parsedData.stage;
+        this.waiting = parsedData.waiting;
+      }
     },
   },
 };

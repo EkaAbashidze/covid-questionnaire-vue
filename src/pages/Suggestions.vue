@@ -217,7 +217,7 @@
       </div>
     </div>
     <div class="flex justify-center gap-[117px]">
-      <router-link to="/questionnaire">
+      <router-link to="/vaccine">
         <img
           src="../../public/images/back.svg"
           alt="Next Page Arrow"

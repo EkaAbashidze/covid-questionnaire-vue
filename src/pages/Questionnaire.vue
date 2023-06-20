@@ -225,7 +225,6 @@ export default {
       this.saveFormData();
       this.$router.push("/vaccine");
     },
-    // Save form data to localStorage
     saveFormData() {
       const formData = {
         covidStatus: this.covidStatus,

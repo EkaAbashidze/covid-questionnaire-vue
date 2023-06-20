@@ -249,33 +249,63 @@ export default {
       opinion: null,
     };
   },
+  created() {
+    this.loadFormData();
+  },
   methods: {
     updateNonFormal(event) {
       this.$store.commit("updateUserData", {
         property: "non_formal_meetings",
         value: event.target.value,
       });
+      this.nonFormalMeetings = event.target.value;
+      this.saveFormData();
     },
     updateOfficeDays(event) {
       this.$store.commit("updateUserData", {
         property: "number_of_days_from_office",
         value: +event.target.value,
       });
+      this.officeDays = event.target.value;
+      this.saveFormData();
     },
     updateLiveMeetings(event) {
       this.$store.commit("updateUserData", {
         property: "what_about_meetings_in_live",
         value: event.target.value,
       });
+      this.liveMeetings = event.target.value;
+      this.saveFormData();
     },
     updateOpinion(event) {
       this.$store.commit("updateUserData", {
         property: "tell_us_your_opinion_about_us",
         value: event.target.value,
       });
+      this.opinion = event.target.value;
+      this.saveFormData();
     },
     submitForm(event) {
+      this.saveFormData();
       this.$router.push("/thankyou");
+    },
+    saveFormData() {
+      const formData = {
+        nonFormalMeetings: this.nonFormalMeetings,
+        officeDays: this.officeDays,
+        liveMeetings: this.liveMeetings,
+        opinion: this.opinion,
+      };
+      localStorage.setItem("formPage4Data", JSON.stringify(formData));
+    },
+    loadFormData() {
+      const formData = JSON.parse(localStorage.getItem("formPage4Data"));
+      if (formData) {
+        this.nonFormalMeetings = formData.nonFormalMeetings;
+        this.officeDays = formData.officeDays;
+        this.liveMeetings = formData.liveMeetings;
+        this.opinion = formData.opinion;
+      }
     },
   },
 };

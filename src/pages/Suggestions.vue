@@ -3,7 +3,7 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="w-[600px]">
-        <Form>
+        <Form @submit="submitForm($event)">
           <div class="mb-12">
             <p class="mb-6">
               რედბერის მთავარი ღირებულება ჩვენი გუნდის თითოეული წევრია. გარემო,
@@ -273,6 +273,9 @@ export default {
         property: "tell_us_your_opinion_about_us",
         value: event.target.value,
       });
+    },
+    submitForm(event) {
+      this.$router.push("/questionnaire");
     },
   },
 };

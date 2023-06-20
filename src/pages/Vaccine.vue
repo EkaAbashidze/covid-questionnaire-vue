@@ -3,7 +3,7 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="">
-        <Form>
+        <Form @submit="submitForm($event)">
           <div class="mb-12">
             <label class="text-lg block mb-2">უკვე აცრილი ხარ?*</label>
             <div class="flex items-center">
@@ -212,6 +212,9 @@ export default {
         property: "i_am_waiting",
         value: event.target.value,
       });
+    },
+    submitForm(event) {
+      this.$router.push("/questionnaire");
     },
   },
 };

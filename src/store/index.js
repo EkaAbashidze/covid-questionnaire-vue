@@ -10,7 +10,7 @@ const store = createStore({
 
         had_covid: '',
 
-        had_antibody_test: false,
+        had_antibody_test: null,
 
 
         covid_sickness_date: '',
@@ -20,7 +20,7 @@ const store = createStore({
           number: 0
         },
 
-        had_vaccine: false,
+        had_vaccine: null,
         vaccination_stage: '',
         //
 

@@ -3,7 +3,7 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="">
-        <Form>
+        <Form @submit="submitForm($event)">
           <div class="mb-12">
             <label class="text-lg block mb-2"
               >გაქვს გადატანილი Covid-19?*</label
@@ -12,33 +12,30 @@
               <Field
                 name="covidStatus"
                 type="radio"
-                id="covidStatusYes"
                 class="mr-2"
                 value="yes"
                 v-model="covidStatus"
                 @change="updateCovidStatus"
                 rules="radio"
               />
-              <label for="covidStatusYes">კი</label>
+              <label for="covidStatus">კი</label>
             </div>
             <div class="flex items-center">
               <Field
                 name="covidStatus"
                 type="radio"
-                id="covidStatusNo"
                 class="mr-2"
                 value="no"
                 v-model="covidStatus"
                 @change="updateCovidStatus"
                 rules="radio"
               />
-              <label for="covidStatusNo">არა</label>
+              <label for="covidStatus">არა</label>
             </div>
             <div class="flex items-center">
               <Field
                 name="covidStatus"
                 type="radio"
-                id="covidStatusNow"
                 class="mr-2"
                 value="have_right_now"
                 v-model="covidStatus"
@@ -58,12 +55,11 @@
               <Field
                 name="antibodyTest"
                 type="radio"
-                id="antibodyTest"
                 class="mr-2"
                 :value="true"
                 v-model="antibodyTest"
                 @change="updateAntibodyTest"
-                rules="radio"
+                rules="boolean"
               />
               <label for="antibodyTest">კი</label>
             </div>
@@ -71,12 +67,11 @@
               <Field
                 name="antibodyTest"
                 type="radio"
-                id="antibodyTest"
                 class="mr-2"
                 :value="false"
                 v-model="antibodyTest"
                 @change="updateAntibodyTest"
-                rules="radio"
+                rules="boolean"
               />
               <label for="antibodyTest">არა</label>
             </div>
@@ -90,27 +85,26 @@
             >
             <div class="flex flex-col gap-[25px]">
               <Field
-                name="antibodyCount"
+                name="antibody"
                 type="date"
                 placeholder="რიცხვი"
-                id="antibodyCount"
                 class="border border-gray-400 p-2 h-[50px] bg-transparent px-5 mr-2 w-[513px]"
                 v-model="antibodyCount.testDate"
-                @input="updateAntibodyCount($event, antibodyCount.testDate)"
+                @input="updateAntibodyCount($event, 'test_date')"
                 rules="radio"
               />
               <Field
-                name="antibodyCount"
+                name="antibody2"
                 type="number"
                 placeholder="ანტისხეულების რაოდენობა"
-                id="antibodyCount"
                 class="border border-gray-400 p-2 h-[50px] bg-transparent px-5 w-[513px]"
                 v-model="antibodyCount.number"
                 @input="updateAntibodyCount($event, 'number')"
                 rules="radio"
               />
             </div>
-            <ErrorMessage name="antibodyCount" class="text-red-500" />
+            <ErrorMessage name="antibody" class="text-red-500" />
+            <ErrorMessage name="antibody2" class="text-red-500" />
           </div>
           <div class="">
             <label class="text-lg block mb-2"
@@ -121,7 +115,6 @@
               name="covidPeriod"
               type="date"
               placeholder="დდ/თთ/წწ"
-              id="covidPeriod"
               v-model="covidPeriod"
               class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
               @change="updateCovidPeriod"
@@ -190,12 +183,13 @@ export default {
     updateAntibodyTest(event) {
       this.$store.commit("updateUserData", {
         property: "had_antibody_test",
-        value: event.target.value,
+        value: event.target.value === "true",
       });
     },
     updateAntibodyCount(event, field) {
+      console.log(this.antibodyCount);
       const value =
-        field === "testDate"
+        field === "test_date"
           ? {
               test_date: event.target.value,
               number: this.antibodyCount.number,
@@ -214,6 +208,9 @@ export default {
         property: "covid_sickness_date",
         value: event.target.value,
       });
+    },
+    submitForm(event) {
+      this.$router.push("/questionnaire");
     },
   },
 };

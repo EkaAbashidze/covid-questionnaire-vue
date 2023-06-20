@@ -96,27 +96,54 @@ export default {
       email: "",
     };
   },
+  created() {
+    this.loadFormData();
+  },
   methods: {
     updateFirstName(event) {
       this.$store.commit("updateUserData", {
         property: "first_name",
         value: event.target.value,
       });
+      this.firstName = event.target.value;
+      this.saveFormData();
     },
     updateLastName(event) {
       this.$store.commit("updateUserData", {
         property: "last_name",
         value: event.target.value,
       });
+      this.lastName = event.target.value;
+      this.saveFormData();
     },
     updateEmail(event) {
       this.$store.commit("updateUserData", {
         property: "email",
         value: event.target.value,
       });
+      this.email = event.target.value;
+      this.saveFormData();
     },
     submitForm(event) {
+      this.saveFormData();
       this.$router.push("/questionnaire");
+    },
+    saveFormData() {
+      const formData = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+      };
+      localStorage.setItem("formData", JSON.stringify(formData));
+    },
+    loadFormData() {
+      const formData = localStorage.getItem("formData");
+      if (formData) {
+        const { firstName, lastName, email } = JSON.parse(formData);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+      }
     },
   },
 };

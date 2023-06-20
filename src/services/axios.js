@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const createUser = (data) => {
-    return axios.put("https://covid19.devtest.ge/api/create" + data)
-}
+    return axios.post("https://covid19.devtest.ge/api/create", data);
+};

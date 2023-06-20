@@ -29,7 +29,7 @@
               id="lastName"
               class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
               v-model="lastName"
-              @input="updatelastName"
+              @input="updateLastName"
             />
           </div>
           <ErrorMessage name="lastName" class="text-red-500" />

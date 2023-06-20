@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vee-validate/rules": "^4.9.6",
+    "axios": "^1.4.0",
     "vee-validate": "^4.5.8",
     "vue": "^3.2.47",
     "vue-router": "^4.2.2",

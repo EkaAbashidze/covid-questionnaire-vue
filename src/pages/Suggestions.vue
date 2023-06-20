@@ -231,6 +231,7 @@
 <script>
 import Navbar from "../components/Navbar.vue";
 import { Field, Form, ErrorMessage } from "vee-validate";
+import { createUser } from "../services/axios";
 
 export default {
   components: {
@@ -242,7 +243,6 @@ export default {
   data() {
     return {
       currentPage: 4,
-
       nonFormalMeetings: null,
       officeDays: null,
       liveMeetings: null,
@@ -286,7 +286,15 @@ export default {
       this.saveFormData();
     },
     submitForm(event) {
-      this.saveFormData();
+      const formData = this.$store.state.userData;
+      createUser(formData)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
       this.$router.push("/thankyou");
     },
     saveFormData() {

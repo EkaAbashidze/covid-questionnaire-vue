@@ -3,7 +3,7 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="">
-        <Form>
+        <Form @submit="submitForm($event)">
           <div class="mb-12">
             <label for="firstName" class="text-lg block mb-2">სახელი*</label>
             <Field
@@ -114,6 +114,9 @@ export default {
         property: "email",
         value: event.target.value,
       });
+    },
+    submitForm(event) {
+      this.$router.push("/questionnaire");
     },
   },
 };

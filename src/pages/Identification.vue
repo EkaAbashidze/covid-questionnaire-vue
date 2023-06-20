@@ -3,42 +3,59 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="">
-        <form @submit.prevent="">
+        <Form>
           <div class="mb-12">
             <label for="firstName" class="text-lg block mb-2">სახელი*</label>
-            <input
+            <Field
+              name="firstName"
+              rules="min|max|alpha"
               placeholder="იოსებ"
-              type="text"
+              type="firstName"
               id="firstName"
               class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
               v-model="firstName"
               @input="updateFirstName"
             />
           </div>
+          <ErrorMessage name="firstName" class="text-red-500" />
           <div class="mb-12">
             <label for="lastName" class="text-lg block mb-2">გვარი*</label>
-            <input
+
+            <Field
+              name="lastName"
+              rules="minlast|maxlast|alphalast"
               placeholder="ჯუღაშვილი"
-              type="text"
+              type="lastName"
               id="lastName"
               class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
               v-model="lastName"
-              @input="updateLastName"
+              @input="updatelastName"
             />
           </div>
+          <ErrorMessage name="lastName" class="text-red-500" />
           <div class="mb-4">
             <label for="email" class="text-lg block mb-2">მეილი*</label>
-            <Field name="email" rules="required|email">
-              <input
-                placeholder="fbi@redberry.ge"
-                type="email"
-                id="email"
-                class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
-                v-model="email"
-                @input="updateEmail"
+            <Field
+              name="email"
+              rules="required|email"
+              placeholder="fbi@redberry.ge"
+              type="email"
+              id="email"
+              class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
+              v-model="email"
+              @input="updateEmail"
+            />
+          </div>
+          <ErrorMessage name="email" class="text-red-500" />
+
+          <div class="flex justify-center mt-10">
+            <button type="submit">
+              <img
+                src="../../public/images/next.svg"
+                alt="Next Page Arrow"
+                class="h-12 w-[14px]"
               />
-              <ErrorMessage name="email" class="text-red-500" />
-            </Field>
+            </button>
           </div>
 
           <div class="">
@@ -47,7 +64,7 @@
               *-ით მონიშნული ველების შევსება სავალდებულოა
             </p>
           </div>
-        </form>
+        </Form>
       </div>
 
       <div class="flex justify-center items-center mt-[-100px]">
@@ -56,15 +73,6 @@
           alt="Identification Image"
         />
       </div>
-    </div>
-    <div class="flex justify-center mt-10">
-      <router-link to="/questionnaire">
-        <img
-          src="../../public/images/next.svg"
-          alt="Next Page Arrow"
-          class="h-12 w-[14px]"
-        />
-      </router-link>
     </div>
   </div>
 </template>

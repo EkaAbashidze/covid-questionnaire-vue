@@ -3,107 +3,150 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="">
-        <div class="mb-12">
-          <label class="text-lg block mb-2">გაქვს გადატანილი Covid-19?*</label>
-          <div class="flex items-center">
-            <input
-              type="radio"
-              id="covidStatusYes"
-              class="mr-2"
-              value="yes"
-              v-model="covidStatus"
-              @change="updateCovidStatus"
-            />
-            <label for="covidStatusYes">კი</label>
+        <Form>
+          <div class="mb-12">
+            <label class="text-lg block mb-2"
+              >გაქვს გადატანილი Covid-19?*</label
+            >
+            <div class="flex items-center">
+              <Field
+                name="covidStatus"
+                type="radio"
+                id="covidStatusYes"
+                class="mr-2"
+                value="yes"
+                v-model="covidStatus"
+                @change="updateCovidStatus"
+                rules="radio"
+              />
+              <label for="covidStatusYes">კი</label>
+            </div>
+            <div class="flex items-center">
+              <Field
+                name="covidStatus"
+                type="radio"
+                id="covidStatusNo"
+                class="mr-2"
+                value="no"
+                v-model="covidStatus"
+                @change="updateCovidStatus"
+                rules="radio"
+              />
+              <label for="covidStatusNo">არა</label>
+            </div>
+            <div class="flex items-center">
+              <Field
+                name="covidStatus"
+                type="radio"
+                id="covidStatusNow"
+                class="mr-2"
+                value="have_right_now"
+                v-model="covidStatus"
+                @change="updateCovidStatus"
+                rules="radio"
+              />
+              <label for="covidStatus">ახლა მაქვს</label>
+            </div>
           </div>
-          <div class="flex items-center">
-            <input
-              type="radio"
-              id="covidStatusNo"
-              class="mr-2"
-              value="no"
-              v-model="covidStatus"
-              @change="updateCovidStatus"
-            />
-            <label for="covidStatusNo">არა</label>
+          <ErrorMessage name="covidStatus" class="text-red-500" />
+
+          <div class="mb-12">
+            <label class="text-lg block mb-2"
+              >ანტისხეულების ტესტი გაქვს გაკეთებული?*</label
+            >
+            <div class="flex items-center">
+              <Field
+                name="antibodyTest"
+                type="radio"
+                id="antibodyTest"
+                class="mr-2"
+                :value="true"
+                v-model="antibodyTest"
+                @change="updateAntibodyTest"
+                rules="radio"
+              />
+              <label for="antibodyTest">კი</label>
+            </div>
+            <div class="flex items-center">
+              <Field
+                name="antibodyTest"
+                type="radio"
+                id="antibodyTest"
+                class="mr-2"
+                :value="false"
+                v-model="antibodyTest"
+                @change="updateAntibodyTest"
+                rules="radio"
+              />
+              <label for="antibodyTest">არა</label>
+            </div>
           </div>
-          <div class="flex items-center">
-            <input
-              type="radio"
-              id="covidStatusNow"
-              class="mr-2"
-              value="have_right_now"
-              v-model="covidStatus"
-              @change="updateCovidStatus"
-            />
-            <label for="covidStatusNow">ახლა მაქვს</label>
+          <ErrorMessage name="antibodyTest" class="text-red-500" />
+
+          <div class="mb-4">
+            <label class="text-lg block mb-2"
+              >თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და
+              ანტისხეულების რაოდენობა*</label
+            >
+            <div class="flex flex-col gap-[25px]">
+              <Field
+                name="antibodyCount"
+                type="date"
+                placeholder="რიცხვი"
+                id="antibodyCount"
+                class="border border-gray-400 p-2 h-[50px] bg-transparent px-5 mr-2 w-[513px]"
+                v-model="antibodyCount.testDate"
+                @input="updateAntibodyCount($event, antibodyCount.testDate)"
+                rules="radio"
+              />
+              <Field
+                name="antibodyCount"
+                type="number"
+                placeholder="ანტისხეულების რაოდენობა"
+                id="antibodyCount"
+                class="border border-gray-400 p-2 h-[50px] bg-transparent px-5 w-[513px]"
+                v-model="antibodyCount.number"
+                @input="updateAntibodyCount($event, 'number')"
+                rules="radio"
+              />
+            </div>
+            <ErrorMessage name="antibodyCount" class="text-red-500" />
           </div>
-        </div>
-        <div class="mb-12">
-          <label class="text-lg block mb-2"
-            >ანტისხეულების ტესტი გაქვს გაკეთებული?*</label
-          >
-          <div class="flex items-center">
-            <input
-              type="radio"
-              id="antibodyTest"
-              class="mr-2"
-              :value="true"
-              v-model="antibodyTest"
-              @change="updateAntibodyTest"
-            />
-            <label for="antibodyTest">კი</label>
-          </div>
-          <div class="flex items-center">
-            <input
-              type="radio"
-              id="antibodyTest"
-              class="mr-2"
-              :value="false"
-              v-model="antibodyTest"
-              @change="updateAntibodyTest"
-            />
-            <label for="antibodyTest">არა</label>
-          </div>
-        </div>
-        <div class="mb-4">
-          <label class="text-lg block mb-2"
-            >თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და
-            ანტისხეულების რაოდენობა*</label
-          >
-          <div class="flex flex-col gap-[25px]">
-            <input
+          <div class="">
+            <label class="text-lg block mb-2"
+              >მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა
+              Covid-19*</label
+            >
+            <Field
+              name="covidPeriod"
               type="date"
-              placeholder="რიცხვი"
-              id="antibodyCount"
-              class="border border-gray-400 p-2 h-[50px] bg-transparent px-5 mr-2 w-[513px]"
-              v-model="antibodyCount.testDate"
-              @input="updateAntibodyCount($event, antibodyCount.testDate)"
-            />
-            <input
-              type="number"
-              placeholder="ანტისხეულების რაოდენობა"
-              id="antibodyCount"
-              class="border border-gray-400 p-2 h-[50px] bg-transparent px-5 w-[513px]"
-              v-model="antibodyCount.number"
-              @input="updateAntibodyCount($event, 'number')"
+              placeholder="დდ/თთ/წწ"
+              id="covidPeriod"
+              v-model="covidPeriod"
+              class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
+              @change="updateCovidPeriod"
+              rules="radio"
             />
           </div>
-        </div>
-        <div class="">
-          <label class="text-lg block mb-2"
-            >მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა
-            Covid-19*</label
-          >
-          <input
-            type="date"
-            placeholder="დდ/თთ/წწ"
-            id="covidPeriod"
-            v-model="covidPeriod"
-            class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
-            @change="updateCovidPeriod"
-          />
-        </div>
+          <ErrorMessage name="covidPeriod" class="text-red-500" />
+
+          <div class="flex justify-center gap-[117px]">
+            <router-link to="/identification">
+              <img
+                src="../../public/images/back.svg"
+                alt="Next Page Arrow"
+                class="h-12 w-[14px]"
+              />
+            </router-link>
+            <button type="submit">
+              <img
+                src="../../public/images/next.svg"
+                alt="Next Page Arrow"
+                class="h-12 w-[14px]"
+              />
+            </button>
+          </div>
+        </Form>
       </div>
 
       <div class="flex justify-center items-center mt-[-50px]">
@@ -113,31 +156,19 @@
         />
       </div>
     </div>
-    <div class="flex justify-center gap-[117px]">
-      <router-link to="/identification">
-        <img
-          src="../../public/images/back.svg"
-          alt="Next Page Arrow"
-          class="h-12 w-[14px]"
-        />
-      </router-link>
-      <router-link to="/vaccine">
-        <img
-          src="../../public/images/next.svg"
-          alt="Next Page Arrow"
-          class="h-12 w-[14px]"
-        />
-      </router-link>
-    </div>
   </div>
 </template>
 
 <script>
 import Navbar from "../components/Navbar.vue";
+import { Field, Form, ErrorMessage } from "vee-validate";
 
 export default {
   components: {
     Navbar,
+    Field,
+    Form,
+    ErrorMessage,
   },
   data() {
     return {

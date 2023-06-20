@@ -5,11 +5,9 @@ import './assets/fonts/bpg_arial_2009.ttf';
 import store from './store/index.js';
 import router from './router.js';
 
-import veevalidateconfig from './veevalidateconfig';
+import "./config/vee-validate/rules";
 
 const app = createApp(App);
-
-veevalidateconfig();
 
 app.use(router);
 app.use(store);

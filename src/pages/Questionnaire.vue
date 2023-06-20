@@ -169,12 +169,17 @@ export default {
       covidPeriod: "",
     };
   },
+  created() {
+    this.loadFormData();
+  },
   methods: {
     updateCovidStatus(event) {
       this.$store.commit("updateUserData", {
         property: "had_covid",
         value: event.target.value,
       });
+      this.covidStatus = event.target.value;
+      this.saveFormData();
     },
 
     updateAntibodyTest(event) {
@@ -182,6 +187,8 @@ export default {
         property: "had_antibody_test",
         value: event.target.value === "true",
       });
+      this.antibodyTest = event.target.value === "true";
+      this.saveFormData();
     },
     updateAntibodyCount(event, field) {
       console.log(this.antibodyCount);
@@ -199,15 +206,45 @@ export default {
         property: "antibodies",
         value,
       });
+      const updatedValue =
+        field === "test_date"
+          ? { ...this.antibodyCount, testDate: event.target.value }
+          : { ...this.antibodyCount, number: +event.target.value };
+      this.antibodyCount = updatedValue;
+      this.saveFormData();
     },
     updateCovidPeriod(event) {
       this.$store.commit("updateUserData", {
         property: "covid_sickness_date",
         value: event.target.value,
       });
+      this.covidPeriod = event.target.value;
+      this.saveFormData();
     },
     submitForm(event) {
+      this.saveFormData();
       this.$router.push("/vaccine");
+    },
+    // Save form data to localStorage
+    saveFormData() {
+      const formData = {
+        covidStatus: this.covidStatus,
+        antibodyTest: this.antibodyTest,
+        antibodyCount: this.antibodyCount,
+        covidPeriod: this.covidPeriod,
+      };
+      localStorage.setItem("formDataPage2", JSON.stringify(formData));
+    },
+
+    loadFormData() {
+      const formData = localStorage.getItem("formDataPage2");
+      if (formData) {
+        const parsedData = JSON.parse(formData);
+        this.covidStatus = parsedData.covidStatus;
+        this.antibodyTest = parsedData.antibodyTest;
+        this.antibodyCount = parsedData.antibodyCount;
+        this.covidPeriod = parsedData.covidPeriod;
+      }
     },
   },
 };

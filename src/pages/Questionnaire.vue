@@ -173,25 +173,26 @@ export default {
     this.loadFormData();
   },
   methods: {
-    updateCovidStatus(event) {
+    updateFormData(event, key) {
       this.$store.commit("updateUserData", {
-        property: "had_covid",
+        property: key,
         value: event.target.value,
       });
-      this.covidStatus = event.target.value;
       this.saveFormData();
     },
 
-    updateAntibodyTest(event) {
-      this.$store.commit("updateUserData", {
-        property: "had_antibody_test",
-        value: event.target.value === "true",
-      });
-      this.antibodyTest = event.target.value === "true";
-      this.saveFormData();
+    updateCovidStatus(event) {
+      this.updateFormData(event, "had_covid");
+      this.covidStatus = event.target.value;
     },
+
+    updateAntibodyTest(event) {
+      const value = event.target.value === "true";
+      this.updateFormData(event, "had_antibody_test");
+      this.antibodyTest = value;
+    },
+
     updateAntibodyCount(event, field) {
-      console.log(this.antibodyCount);
       const value =
         field === "test_date"
           ? {
@@ -202,29 +203,24 @@ export default {
               test_date: this.antibodyCount.testDate,
               number: +event.target.value,
             };
-      this.$store.commit("updateUserData", {
-        property: "antibodies",
-        value,
-      });
+      this.updateFormData(event, "antibodies");
       const updatedValue =
         field === "test_date"
           ? { ...this.antibodyCount, testDate: event.target.value }
           : { ...this.antibodyCount, number: +event.target.value };
       this.antibodyCount = updatedValue;
-      this.saveFormData();
     },
+
     updateCovidPeriod(event) {
-      this.$store.commit("updateUserData", {
-        property: "covid_sickness_date",
-        value: event.target.value,
-      });
+      this.updateFormData(event, "covid_sickness_date");
       this.covidPeriod = event.target.value;
-      this.saveFormData();
     },
+
     submitForm(event) {
       this.saveFormData();
       this.$router.push("/vaccine");
     },
+
     saveFormData() {
       const formData = {
         covidStatus: this.covidStatus,

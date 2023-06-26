@@ -36,7 +36,7 @@
           </div>
           <ErrorMessage name="vaccineStatus" class="text-red-500" />
 
-          <div class="mb-12">
+          <div class="mb-12" v-if="vaccineStatus === true">
             <label class="text-lg block mb-2">აირჩიე რა ეტაპზე ხარ*</label>
             <div class="flex items-center">
               <input
@@ -81,7 +81,7 @@
             </div>
           </div>
 
-          <div class="mb-4">
+          <div class="mb-4" v-if="vaccineStatus === false">
             <label class="text-lg block mb-2">რას ელოდები?*</label>
             <div class="flex items-center">
               <input
@@ -125,20 +125,30 @@
           </div>
 
           <div>
-            <p>რომ არ გადადო, ბარემ ახლავე დარეგისტრირდი</p>
-            <a href="https://booking.moh.gov.ge/" target="_blank"
-              >https://booking.moh.gov.ge/</a
+            <div v-if="stage === 'first_dosage_and_not_registered_yet'">
+              <p>რომ არ გადადო, ბარემ ახლავე დარეგისტრირდი</p>
+              <a href="https://booking.moh.gov.ge/" target="_blank"
+                >https://booking.moh.gov.ge/</a
+              >
+            </div>
+            <div
+              class="mt-4"
+              v-if="waiting === 'had_covid_and_planning_to_be_vaccinated'"
             >
-          </div>
-          <div class="mt-4">
-            <label class="text-lg block mb-2"
-              >ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ
-              ვაქცინის გაკეთება.</label
-            >
-            <p>👉 რეგისტრაციის ბმული</p>
-            <a href="https://booking.moh.gov.ge/" target="_blank"
-              >https://booking.moh.gov.ge/</a
-            >
+              <label class="text-lg block mb-2"
+                >ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ
+                ვაქცინის გაკეთება.</label
+              >
+              <p>👉 რეგისტრაციის ბმული</p>
+              <a href="https://booking.moh.gov.ge/" target="_blank"
+                >https://booking.moh.gov.ge/</a
+              >
+            </div>
+            <div v-if="waiting === 'not_planning'">
+              <a href="https://booking.moh.gov.ge/" target="_blank"
+                >https://booking.moh.gov.ge/</a
+              >
+            </div>
           </div>
 
           <div class="flex justify-center gap-[117px]">

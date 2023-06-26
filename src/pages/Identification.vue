@@ -104,20 +104,13 @@ export default {
       this.updateFormData(event, "first_name");
     },
     updateLastName(event) {
-      this.$store.commit("updateUserData", {
-        property: "last_name",
-        value: event.target.value,
-      });
-      this.saveFormData();
+      this.updateFormData(event, "last_name");
     },
+
     updateEmail(event) {
-      this.$store.commit("updateUserData", {
-        property: "email",
-        value: event.target.value,
-      });
-      this.email = event.target.value;
-      this.saveFormData();
+      this.updateFormData(event, "email");
     },
+
     submitForm(event) {
       this.saveFormData();
       this.$router.push("/questionnaire");

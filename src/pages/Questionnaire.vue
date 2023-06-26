@@ -47,7 +47,7 @@
           </div>
           <ErrorMessage name="covidStatus" class="text-red-500" />
 
-          <div class="mb-12">
+          <div class="mb-12" v-if="covidStatus !== null">
             <label class="text-lg block mb-2"
               >ანტისხეულების ტესტი გაქვს გაკეთებული?*</label
             >
@@ -77,7 +77,7 @@
             </div>
           </div>
 
-          <div class="mb-4">
+          <div class="mb-4" v-if="antibodyTest === true">
             <label class="text-lg block mb-2"
               >თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და
               ანტისხეულების რაოდენობა*</label
@@ -103,7 +103,7 @@
               />
             </div>
           </div>
-          <div class="">
+          <div class="" v-if="antibodyTest === false">
             <label class="text-lg block mb-2"
               >მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა
               Covid-19*</label

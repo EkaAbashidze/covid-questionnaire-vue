@@ -177,10 +177,15 @@ export default {
       this.updateFormData(event, "had_covid");
     },
     updateAntibodyTest(event) {
-      const value = event.target.value === "true";
-      this.updateFormData(event, "had_antibody_test");
+      this.$store.commit("updateUserData", {
+        property: "had_antibody_test",
+        value: event.target.value === "true",
+      });
+      this.antibodyTest = event.target.value === "true";
+      this.saveFormData();
     },
     updateAntibodyCount(event, field) {
+      console.log(this.antibodyCount);
       const value =
         field === "test_date"
           ? {
@@ -191,16 +196,25 @@ export default {
               test_date: this.antibodyCount.testDate,
               number: +event.target.value,
             };
-      this.updateFormData(event, "antibodies");
+      this.$store.commit("updateUserData", {
+        property: "antibodies",
+        value,
+      });
       const updatedValue =
         field === "test_date"
           ? { ...this.antibodyCount, testDate: event.target.value }
           : { ...this.antibodyCount, number: +event.target.value };
       this.antibodyCount = updatedValue;
+      this.saveFormData();
     },
 
     updateCovidPeriod(event) {
-      this.updateFormData(event, "covid_sickness_date");
+      this.$store.commit("updateUserData", {
+        property: "covid_sickness_date",
+        value: event.target.value,
+      });
+      this.covidPeriod = event.target.value;
+      this.saveFormData();
     },
 
     submitForm(event) {

@@ -201,8 +201,12 @@ export default {
   },
   methods: {
     updateVaccineStatus(event) {
-      const value = event.target.value === "true";
-      this.updateFormData(event, "had_vaccine");
+      this.$store.commit("updateUserData", {
+        property: "had_vaccine",
+        value: event.target.value === "true",
+      });
+      this.vaccineStatus = event.target.value === "true";
+      this.saveFormData();
     },
     updateStage(event) {
       this.updateFormData(event, "vaccination_stage");

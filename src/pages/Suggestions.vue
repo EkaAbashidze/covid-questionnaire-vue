@@ -254,36 +254,19 @@ export default {
   },
   methods: {
     updateNonFormal(event) {
-      this.$store.commit("updateUserData", {
-        property: "non_formal_meetings",
-        value: event.target.value,
-      });
-      this.nonFormalMeetings = event.target.value;
-      this.saveFormData();
+      this.updateFormData(event, "non_formal_meetings");
     },
+
     updateOfficeDays(event) {
-      this.$store.commit("updateUserData", {
-        property: "number_of_days_from_office",
-        value: +event.target.value,
-      });
-      this.officeDays = event.target.value;
-      this.saveFormData();
+      const value = +event.target.value;
+      this.updateFormData(event, "number_of_days_from_office");
     },
+
     updateLiveMeetings(event) {
-      this.$store.commit("updateUserData", {
-        property: "what_about_meetings_in_live",
-        value: event.target.value,
-      });
-      this.liveMeetings = event.target.value;
-      this.saveFormData();
+      this.updateFormData(event, "what_about_meetings_in_live");
     },
     updateOpinion(event) {
-      this.$store.commit("updateUserData", {
-        property: "tell_us_your_opinion_about_us",
-        value: event.target.value,
-      });
-      this.opinion = event.target.value;
-      this.saveFormData();
+      this.updateFormData(event, "tell_us_your_opinion_about_us");
     },
     submitForm(event) {
       const formData = this.$store.state.userData;
@@ -296,6 +279,13 @@ export default {
         });
 
       this.$router.push("/thankyou");
+    },
+    updateFormData(event, key) {
+      this.$store.commit("updateUserData", {
+        property: key,
+        value: event.target.value,
+      });
+      this.saveFormData();
     },
     saveFormData() {
       const formData = {

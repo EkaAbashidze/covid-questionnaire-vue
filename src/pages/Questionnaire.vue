@@ -173,25 +173,15 @@ export default {
     this.loadFormData();
   },
   methods: {
-    updateFormData(event, key) {
-      this.$store.commit("updateUserData", {
-        property: key,
-        value: event.target.value,
-      });
-      this.saveFormData();
-    },
-
     updateCovidStatus(event) {
       this.updateFormData(event, "had_covid");
       this.covidStatus = event.target.value;
     },
-
     updateAntibodyTest(event) {
       const value = event.target.value === "true";
       this.updateFormData(event, "had_antibody_test");
       this.antibodyTest = value;
     },
-
     updateAntibodyCount(event, field) {
       const value =
         field === "test_date"
@@ -220,7 +210,13 @@ export default {
       this.saveFormData();
       this.$router.push("/vaccine");
     },
-
+    updateFormData(event, key) {
+      this.$store.commit("updateUserData", {
+        property: key,
+        value: event.target.value,
+      });
+      this.saveFormData();
+    },
     saveFormData() {
       const formData = {
         covidStatus: this.covidStatus,

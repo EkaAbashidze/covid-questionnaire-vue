@@ -191,32 +191,28 @@ export default {
   },
   methods: {
     updateVaccineStatus(event) {
-      this.$store.commit("updateUserData", {
-        property: "had_vaccine",
-        value: event.target.value === "true",
-      });
-      this.vaccineStatus = event.target.value === "true";
-      this.saveFormData();
+      const value = event.target.value === "true";
+      this.updateFormData(event, "had_vaccine");
+      this.vaccineStatus = value;
     },
     updateStage(event) {
-      this.$store.commit("updateUserData", {
-        property: "vaccination_stage",
-        value: event.target.value,
-      });
+      this.updateFormData(event, "vaccination_stage");
       this.stage = event.target.value;
-      this.saveFormData();
     },
     updateWaiting(event) {
-      this.$store.commit("updateUserData", {
-        property: "i_am_waiting",
-        value: event.target.value,
-      });
+      this.updateFormData(event, "i_am_waiting");
       this.waiting = event.target.value;
-      this.saveFormData();
     },
     submitForm(event) {
       this.saveFormData();
       this.$router.push("/suggestions");
+    },
+    updateFormData(event, key) {
+      this.$store.commit("updateUserData", {
+        property: key,
+        value: event.target.value,
+      });
+      this.saveFormData();
     },
     saveFormData() {
       const formData = {

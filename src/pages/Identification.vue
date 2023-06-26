@@ -113,7 +113,6 @@ export default {
         property: "last_name",
         value: event.target.value,
       });
-      this.lastName = event.target.value;
       this.saveFormData();
     },
     updateEmail(event) {

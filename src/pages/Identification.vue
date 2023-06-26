@@ -101,12 +101,7 @@ export default {
   },
   methods: {
     updateFirstName(event) {
-      this.$store.commit("updateUserData", {
-        property: "first_name",
-        value: event.target.value,
-      });
-      this.firstName = event.target.value;
-      this.saveFormData();
+      this.updateFormData(event, "first_name");
     },
     updateLastName(event) {
       this.$store.commit("updateUserData", {
@@ -126,6 +121,13 @@ export default {
     submitForm(event) {
       this.saveFormData();
       this.$router.push("/questionnaire");
+    },
+    updateFormData(event, key) {
+      this.$store.commit("updateUserData", {
+        property: key,
+        value: event.target.value,
+      });
+      this.saveFormData();
     },
     saveFormData() {
       const formData = {

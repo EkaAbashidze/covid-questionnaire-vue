@@ -175,12 +175,10 @@ export default {
   methods: {
     updateCovidStatus(event) {
       this.updateFormData(event, "had_covid");
-      this.covidStatus = event.target.value;
     },
     updateAntibodyTest(event) {
       const value = event.target.value === "true";
       this.updateFormData(event, "had_antibody_test");
-      this.antibodyTest = value;
     },
     updateAntibodyCount(event, field) {
       const value =
@@ -203,7 +201,6 @@ export default {
 
     updateCovidPeriod(event) {
       this.updateFormData(event, "covid_sickness_date");
-      this.covidPeriod = event.target.value;
     },
 
     submitForm(event) {

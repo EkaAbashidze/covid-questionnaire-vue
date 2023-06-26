@@ -193,15 +193,12 @@ export default {
     updateVaccineStatus(event) {
       const value = event.target.value === "true";
       this.updateFormData(event, "had_vaccine");
-      this.vaccineStatus = value;
     },
     updateStage(event) {
       this.updateFormData(event, "vaccination_stage");
-      this.stage = event.target.value;
     },
     updateWaiting(event) {
       this.updateFormData(event, "i_am_waiting");
-      this.waiting = event.target.value;
     },
     submitForm(event) {
       this.saveFormData();

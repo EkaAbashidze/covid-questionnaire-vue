@@ -273,11 +273,11 @@ export default {
       createUser(formData)
         .then((response) => {
           console.log(response);
+          this.$router.push("/thankyou");
         })
         .catch((error) => {
           console.log(error);
         });
-      this.$router.push("/thankyou");
     },
     updateFormData(event, key) {
       this.$store.commit("updateUserData", {

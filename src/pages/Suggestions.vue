@@ -277,7 +277,6 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-
       this.$router.push("/thankyou");
     },
     updateFormData(event, key) {

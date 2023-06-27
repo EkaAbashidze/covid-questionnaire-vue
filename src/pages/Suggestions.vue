@@ -3,7 +3,7 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="w-[600px]">
-        <Form>
+        <Form @submit="submitForm($event)">
           <div class="mb-12">
             <p class="mb-6">
               რედბერის მთავარი ღირებულება ჩვენი გუნდის თითოეული წევრია. გარემო,
@@ -217,7 +217,7 @@
       </div>
     </div>
     <div class="flex justify-center gap-[117px]">
-      <router-link to="/questionnaire">
+      <router-link to="/vaccine">
         <img
           src="../../public/images/back.svg"
           alt="Next Page Arrow"
@@ -231,6 +231,7 @@
 <script>
 import Navbar from "../components/Navbar.vue";
 import { Field, Form, ErrorMessage } from "vee-validate";
+import { createUser } from "../services/axios";
 
 export default {
   components: {
@@ -242,37 +243,66 @@ export default {
   data() {
     return {
       currentPage: 4,
-
       nonFormalMeetings: null,
       officeDays: null,
       liveMeetings: null,
       opinion: null,
     };
   },
+  created() {
+    this.loadFormData();
+  },
   methods: {
     updateNonFormal(event) {
-      this.$store.commit("updateUserData", {
-        property: "non_formal_meetings",
-        value: event.target.value,
-      });
+      this.updateFormData(event, "non_formal_meetings");
     },
+
     updateOfficeDays(event) {
-      this.$store.commit("updateUserData", {
-        property: "number_of_days_from_office",
-        value: +event.target.value,
-      });
+      const value = +event.target.value;
+      this.updateFormData(event, "number_of_days_from_office");
     },
+
     updateLiveMeetings(event) {
-      this.$store.commit("updateUserData", {
-        property: "what_about_meetings_in_live",
-        value: event.target.value,
-      });
+      this.updateFormData(event, "what_about_meetings_in_live");
     },
     updateOpinion(event) {
+      this.updateFormData(event, "tell_us_your_opinion_about_us");
+    },
+    submitForm(event) {
+      const formData = this.$store.state.userData;
+      createUser(formData)
+        .then((response) => {
+          console.log(response);
+          this.$router.push("/thankyou");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    updateFormData(event, key) {
       this.$store.commit("updateUserData", {
-        property: "tell_us_your_opinion_about_us",
+        property: key,
         value: event.target.value,
       });
+      this.saveFormData();
+    },
+    saveFormData() {
+      const formData = {
+        nonFormalMeetings: this.nonFormalMeetings,
+        officeDays: this.officeDays,
+        liveMeetings: this.liveMeetings,
+        opinion: this.opinion,
+      };
+      localStorage.setItem("formPage4Data", JSON.stringify(formData));
+    },
+    loadFormData() {
+      const formData = JSON.parse(localStorage.getItem("formPage4Data"));
+      if (formData) {
+        this.nonFormalMeetings = formData.nonFormalMeetings;
+        this.officeDays = formData.officeDays;
+        this.liveMeetings = formData.liveMeetings;
+        this.opinion = formData.opinion;
+      }
     },
   },
 };

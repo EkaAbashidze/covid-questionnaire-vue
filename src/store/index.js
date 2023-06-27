@@ -7,27 +7,16 @@ const store = createStore({
         first_name: '',
         last_name: '',
         email: '',
-
         had_covid: '',
-
-        had_antibody_test: false,
-
-
+        had_antibody_test: null,
         covid_sickness_date: '',
-
         antibodies: {
           test_date: '',
           number: 0
         },
-
-        had_vaccine: false,
+        had_vaccine: null,
         vaccination_stage: '',
-        //
-
         i_am_waiting: '',
-
-        //
-
         non_formal_meetings: '',
         number_of_days_from_office: 0,
         what_about_meetings_in_live: '',

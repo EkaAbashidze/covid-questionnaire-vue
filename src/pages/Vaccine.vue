@@ -3,7 +3,7 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="">
-        <Form>
+        <Form @submit="submitForm($event)">
           <div class="mb-12">
             <label class="text-lg block mb-2">უკვე აცრილი ხარ?*</label>
             <div class="flex items-center">
@@ -12,10 +12,10 @@
                 type="radio"
                 id="vaccineStatus"
                 class="mr-2"
-                value="yes"
+                :value="true"
                 v-model="vaccineStatus"
                 @change="updateVaccineStatus"
-                rules="radio"
+                rules="boolean"
               />
 
               <label for="vaccineStatus">კი</label>
@@ -26,20 +26,20 @@
                 type="radio"
                 id="vaccineStatus"
                 class="mr-2"
-                value="no"
+                :value="false"
                 v-model="vaccineStatus"
                 @change="updateVaccineStatus"
-                rules="radio"
+                rules="boolean"
               />
               <label for="vaccineStatus">არა</label>
             </div>
           </div>
           <ErrorMessage name="vaccineStatus" class="text-red-500" />
 
-          <div class="mb-12">
+          <div class="mb-12" v-if="vaccineStatus === true">
             <label class="text-lg block mb-2">აირჩიე რა ეტაპზე ხარ*</label>
             <div class="flex items-center">
-              <Field
+              <input
                 name="stage"
                 type="radio"
                 id="stage"
@@ -47,7 +47,6 @@
                 value="first_dosage_and_registered_on_the_second"
                 v-model="stage"
                 @change="updateStage"
-                rules="radio"
               />
 
               <label for="stage"
@@ -55,7 +54,7 @@
               >
             </div>
             <div class="flex items-center">
-              <Field
+              <input
                 name="stage"
                 type="radio"
                 id="stage"
@@ -63,12 +62,11 @@
                 value="fully_vaccinated"
                 v-model="stage"
                 @change="updateStage"
-                rules="radio"
               />
               <label for="stage">სრულად აცრილი ვარ</label>
             </div>
             <div class="flex items-center">
-              <Field
+              <input
                 name="stage"
                 type="radio"
                 id="stage"
@@ -76,19 +74,17 @@
                 value="first_dosage_and_not_registered_yet"
                 v-model="stage"
                 @change="updateStage"
-                rules="radio"
               />
               <label for="stage"
                 >პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე</label
               >
             </div>
           </div>
-          <ErrorMessage name="stage" class="text-red-500" />
 
-          <div class="mb-4">
+          <div class="mb-4" v-if="vaccineStatus === false">
             <label class="text-lg block mb-2">რას ელოდები?*</label>
             <div class="flex items-center">
-              <Field
+              <input
                 name="waiting"
                 type="radio"
                 id="waiting"
@@ -96,14 +92,13 @@
                 value="registered_and_waiting"
                 v-model="waiting"
                 @change="updateWaiting"
-                rules="radio"
               />
               <label for="waiting"
                 >დარეგისტრირებული ვარ და ველოდები რიცხვს</label
               >
             </div>
             <div class="flex items-center">
-              <Field
+              <input
                 name="waiting"
                 type="radio"
                 id="waiting"
@@ -111,13 +106,12 @@
                 value="not_planning"
                 v-model="waiting"
                 @change="updateWaiting"
-                rules="radio"
               />
 
               <label for="waiting">არ ვგეგმავ</label>
             </div>
             <div class="flex items-center">
-              <Field
+              <input
                 name="waiting"
                 type="radio"
                 id="waiting"
@@ -125,28 +119,36 @@
                 value="had_covid_and_planning_to_be_vaccinated"
                 v-model="waiting"
                 @change="updateWaiting"
-                rules="radio"
               />
               <label for="waiting">გადატანილი მაქვს და ვგეგმავ აცრას</label>
             </div>
           </div>
-          <ErrorMessage name="waiting" class="text-red-500" />
 
           <div>
-            <p>რომ არ გადადო, ბარემ ახლავე დარეგისტრირდი</p>
-            <a href="https://booking.moh.gov.ge/" target="_blank"
-              >https://booking.moh.gov.ge/</a
+            <div v-if="stage === 'first_dosage_and_not_registered_yet'">
+              <p>რომ არ გადადო, ბარემ ახლავე დარეგისტრირდი</p>
+              <a href="https://booking.moh.gov.ge/" target="_blank"
+                >https://booking.moh.gov.ge/</a
+              >
+            </div>
+            <div
+              class="mt-4"
+              v-if="waiting === 'had_covid_and_planning_to_be_vaccinated'"
             >
-          </div>
-          <div class="mt-4">
-            <label class="text-lg block mb-2"
-              >ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ
-              ვაქცინის გაკეთება.</label
-            >
-            <p>👉 რეგისტრაციის ბმული</p>
-            <a href="https://booking.moh.gov.ge/" target="_blank"
-              >https://booking.moh.gov.ge/</a
-            >
+              <label class="text-lg block mb-2"
+                >ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ
+                ვაქცინის გაკეთება.</label
+              >
+              <p>👉 რეგისტრაციის ბმული</p>
+              <a href="https://booking.moh.gov.ge/" target="_blank"
+                >https://booking.moh.gov.ge/</a
+              >
+            </div>
+            <div v-if="waiting === 'not_planning'">
+              <a href="https://booking.moh.gov.ge/" target="_blank"
+                >https://booking.moh.gov.ge/</a
+              >
+            </div>
           </div>
 
           <div class="flex justify-center gap-[117px]">
@@ -194,24 +196,51 @@ export default {
       waiting: null,
     };
   },
+  created() {
+    this.loadFormData();
+  },
   methods: {
     updateVaccineStatus(event) {
       this.$store.commit("updateUserData", {
         property: "had_vaccine",
-        value: event.target.value,
+        value: event.target.value === "true",
       });
+      this.vaccineStatus = event.target.value === "true";
+      this.saveFormData();
     },
     updateStage(event) {
-      this.$store.commit("updateUserData", {
-        property: "vaccination_stage",
-        value: event.target.value,
-      });
+      this.updateFormData(event, "vaccination_stage");
     },
     updateWaiting(event) {
+      this.updateFormData(event, "i_am_waiting");
+    },
+    submitForm(event) {
+      this.saveFormData();
+      this.$router.push("/suggestions");
+    },
+    updateFormData(event, key) {
       this.$store.commit("updateUserData", {
-        property: "i_am_waiting",
+        property: key,
         value: event.target.value,
       });
+      this.saveFormData();
+    },
+    saveFormData() {
+      const formData = {
+        vaccineStatus: this.vaccineStatus,
+        stage: this.stage,
+        waiting: this.waiting,
+      };
+      localStorage.setItem("formDataPage3", JSON.stringify(formData));
+    },
+    loadFormData() {
+      const formData = localStorage.getItem("formDataPage3");
+      if (formData) {
+        const parsedData = JSON.parse(formData);
+        this.vaccineStatus = parsedData.vaccineStatus;
+        this.stage = parsedData.stage;
+        this.waiting = parsedData.waiting;
+      }
     },
   },
 };

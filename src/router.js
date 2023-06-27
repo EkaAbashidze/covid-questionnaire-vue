@@ -2,10 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 
 const StartPage = () => import('./pages/StartPage.vue');
-const identification = () => import('./pages/Identification.vue');
+const Identification = () => import('./pages/Identification.vue');
 const Questionnaire = () => import('./pages/Questionnaire.vue');
 const Vaccine = () => import('./pages/Vaccine.vue');
 const Suggestions = () => import('./pages/Suggestions.vue');
+const ThankYou = () => import('./pages/ThankYou.vue');
+
 
 
 const router = createRouter({
@@ -19,7 +21,7 @@ const router = createRouter({
     {
       path: '/identification',
       name: 'identification',
-      component: identification,
+      component: Identification,
     },
     {
       path: '/questionnaire',
@@ -35,6 +37,11 @@ const router = createRouter({
       path: '/suggestions',
       name: 'suggestions',
       component: Suggestions,
+    },
+    {
+      path: '/thankyou',
+      name: 'thankyou',
+      component: ThankYou,
     }
   ]
 });

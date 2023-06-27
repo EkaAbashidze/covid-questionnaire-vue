@@ -15,6 +15,13 @@ defineRule('radio', value => {
     return true;
 });
 
+defineRule('boolean', value => {
+    if (value === null) {
+        return 'გთხოვთ, შეავსოთ ველი';
+    }
+    return true;
+})
+
 defineRule('min', value => {
     if (!value || value.length < 3) {
         return 'სახელის ველი უნდა შედგებოდეს მინიმუმ 3 სიმბოლოსგან';

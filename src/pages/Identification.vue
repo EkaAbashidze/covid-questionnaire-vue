@@ -3,7 +3,7 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="">
-        <Form>
+        <Form @submit="submitForm($event)">
           <div class="mb-12">
             <label for="firstName" class="text-lg block mb-2">სახელი*</label>
             <Field
@@ -29,7 +29,7 @@
               id="lastName"
               class="border border-gray-400 p-2 w-[513px] h-[50px] bg-transparent px-5"
               v-model="lastName"
-              @input="updatelastName"
+              @input="updateLastName"
             />
           </div>
           <ErrorMessage name="lastName" class="text-red-500" />
@@ -96,24 +96,48 @@ export default {
       email: "",
     };
   },
+  created() {
+    this.loadFormData();
+  },
   methods: {
     updateFirstName(event) {
-      this.$store.commit("updateUserData", {
-        property: "first_name",
-        value: event.target.value,
-      });
+      this.updateFormData(event, "first_name");
     },
     updateLastName(event) {
-      this.$store.commit("updateUserData", {
-        property: "last_name",
-        value: event.target.value,
-      });
+      this.updateFormData(event, "last_name");
     },
+
     updateEmail(event) {
+      this.updateFormData(event, "email");
+    },
+
+    submitForm(event) {
+      this.saveFormData();
+      this.$router.push("/questionnaire");
+    },
+    updateFormData(event, key) {
       this.$store.commit("updateUserData", {
-        property: "email",
+        property: key,
         value: event.target.value,
       });
+      this.saveFormData();
+    },
+    saveFormData() {
+      const formData = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+      };
+      localStorage.setItem("formData", JSON.stringify(formData));
+    },
+    loadFormData() {
+      const formData = localStorage.getItem("formData");
+      if (formData) {
+        const { firstName, lastName, email } = JSON.parse(formData);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+      }
     },
   },
 };

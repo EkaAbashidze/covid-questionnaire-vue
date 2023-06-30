@@ -1,7 +1,7 @@
 ## About Covid Questionnaire
 
 
-The Covid Questionnaire Vue is an application created with Vue.js that aims to collect information from new Redbury employees regarding their thoughts and feelings about the Covid situation. The questionnaire helps the company understand how they can improve and support their internal Covid policy.
+The Covid Questionnaire Vue is an application created with Vue.js that aims to collect information from new Redberry employees regarding their thoughts and feelings about the Covid situation. The questionnaire helps the company understand how they can improve and support their internal Covid policy.
 
 #
 ### Table of Contents

@@ -75,8 +75,10 @@
               />
               <label>თვეში ერთხელ</label>
             </div>
+            <div class="block pl-3 pt-2 h-6 mb-12">
+              <ErrorMessage name="nonFormalMeetings" class="text-red-500" />
+            </div>
           </div>
-          <ErrorMessage name="nonFormalMeetings" class="text-red-500" />
 
           <div class="mb-12">
             <label class="text-lg block mb-2 font-bold"
@@ -161,9 +163,10 @@
               />
               <label>5</label>
             </div>
+            <div class="block pl-3 pt-2 h-6 mb-12">
+              <ErrorMessage name="officeDays" class="text-red-500" />
+            </div>
           </div>
-
-          <ErrorMessage name="officeDays" class="text-red-500" />
 
           <div class="mb-4">
             <label class="text-lg block mb-2 font-bold"

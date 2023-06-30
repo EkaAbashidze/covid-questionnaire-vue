@@ -33,8 +33,10 @@
               />
               <label for="vaccineStatus">არა</label>
             </div>
+            <div class="block pl-3 pt-2 h-6 mb-12">
+              <ErrorMessage name="vaccineStatus" class="text-red-500" />
+            </div>
           </div>
-          <ErrorMessage name="vaccineStatus" class="text-red-500" />
 
           <div class="mb-12" v-if="vaccineStatus === true">
             <label class="text-lg block mb-2">აირჩიე რა ეტაპზე ხარ*</label>

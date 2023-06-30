@@ -3,7 +3,7 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="w-[600px]">
-        <Form @submit="submitForm($event)">
+        <Form @submit.prevent="submitForm($event)">
           <div class="mb-12">
             <p class="mb-6">
               რედბერის მთავარი ღირებულება ჩვენი გუნდის თითოეული წევრია. გარემო,
@@ -75,8 +75,10 @@
               />
               <label>თვეში ერთხელ</label>
             </div>
+            <div class="block pl-3 pt-2 h-6 mb-12">
+              <ErrorMessage name="nonFormalMeetings" class="text-red-500" />
+            </div>
           </div>
-          <ErrorMessage name="nonFormalMeetings" class="text-red-500" />
 
           <div class="mb-12">
             <label class="text-lg block mb-2 font-bold"
@@ -161,9 +163,10 @@
               />
               <label>5</label>
             </div>
+            <div class="block pl-3 pt-2 h-6 mb-12">
+              <ErrorMessage name="officeDays" class="text-red-500" />
+            </div>
           </div>
-
-          <ErrorMessage name="officeDays" class="text-red-500" />
 
           <div class="mb-4">
             <label class="text-lg block mb-2 font-bold"
@@ -194,12 +197,26 @@
               ></textarea>
             </div>
           </div>
-          <button
-            type="submit"
-            class="bg-[#208298] rounded-[42px] w-[180px] h-[56px] text-white"
-          >
-            დასრულება
-          </button>
+
+          <div class="flex flex-col w-[513px] relative">
+            <button
+              type="submit"
+              class="bg-[#208298] rounded-[42px] w-[180px] h-[56px] text-white mb-[125px] self-end"
+            >
+              დასრულება
+            </button>
+            <div
+              class="flex justify-center gap-[117px] self-end absolute -right-12 top-[100px]"
+            >
+              <router-link to="/vaccine">
+                <img
+                  src="../../public/images/back.svg"
+                  alt="Next Page Arrow"
+                  class="h-12 w-[14px]"
+                />
+              </router-link>
+            </div>
+          </div>
         </Form>
       </div>
 
@@ -215,15 +232,6 @@
           class="absolute top-[65px] left-[90px]"
         />
       </div>
-    </div>
-    <div class="flex justify-center gap-[117px]">
-      <router-link to="/vaccine">
-        <img
-          src="../../public/images/back.svg"
-          alt="Next Page Arrow"
-          class="h-12 w-[14px]"
-        />
-      </router-link>
     </div>
   </div>
 </template>

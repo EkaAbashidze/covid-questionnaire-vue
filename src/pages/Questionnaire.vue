@@ -3,7 +3,7 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="">
-        <Form @submit="submitForm($event)">
+        <Form @submit.prevent="submitForm($event)">
           <div class="mb-12">
             <label class="text-lg block mb-2"
               >გაქვს გადატანილი Covid-19?*</label
@@ -44,8 +44,10 @@
               />
               <label for="covidStatus">ახლა მაქვს</label>
             </div>
+            <div class="block pl-3 pt-2 h-6 mb-12">
+              <ErrorMessage name="covidStatus" class="text-red-500" />
+            </div>
           </div>
-          <ErrorMessage name="covidStatus" class="text-red-500" />
 
           <div class="mb-12" v-if="covidStatus !== null">
             <label class="text-lg block mb-2"
@@ -117,10 +119,14 @@
               @change="updateCovidPeriod"
               rules="radio"
             />
+            <div class="block pl-3 pt-2 h-6 mb-12">
+              <ErrorMessage name="covidPeriod" class="text-red-500" />
+            </div>
           </div>
-          <ErrorMessage name="covidPeriod" class="text-red-500" />
 
-          <div class="flex justify-center gap-[117px]">
+          <div
+            class="flex justify-center gap-[117px] fixed bottom-[125px] left-1/2 transform -translate-x-1/2"
+          >
             <router-link to="/identification">
               <img
                 src="../../public/images/back.svg"

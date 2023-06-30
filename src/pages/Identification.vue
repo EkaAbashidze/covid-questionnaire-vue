@@ -3,8 +3,8 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="">
-        <Form @submit="submitForm($event)">
-          <div class="mb-12">
+        <Form @submit.prevent="submitForm($event)">
+          <div class="">
             <label for="firstName" class="text-lg block mb-2">სახელი*</label>
             <Field
               name="firstName"
@@ -16,8 +16,10 @@
               v-model="firstName"
               @input="updateFirstName"
             />
+            <div class="block pl-3 pt-2 h-6 mb-12">
+              <ErrorMessage name="firstName" class="text-red-500" />
+            </div>
           </div>
-          <ErrorMessage name="firstName" class="text-red-500" />
           <div class="mb-12">
             <label for="lastName" class="text-lg block mb-2">გვარი*</label>
 
@@ -31,8 +33,10 @@
               v-model="lastName"
               @input="updateLastName"
             />
+            <div class="block pl-3 pt-2 h-6 mb-12">
+              <ErrorMessage name="lastName" class="text-red-500" />
+            </div>
           </div>
-          <ErrorMessage name="lastName" class="text-red-500" />
           <div class="mb-4">
             <label for="email" class="text-lg block mb-2">მეილი*</label>
             <Field
@@ -45,18 +49,21 @@
               v-model="email"
               @input="updateEmail"
             />
+            <div class="block pl-3 pt-2 h-6 mb-12">
+              <ErrorMessage name="email" class="text-red-500" />
+            </div>
           </div>
-          <ErrorMessage name="email" class="text-red-500" />
 
-          <div class="flex justify-center mt-10">
-            <button type="submit">
-              <img
-                src="../../public/images/next.svg"
-                alt="Next Page Arrow"
-                class="h-12 w-[14px]"
-              />
-            </button>
-          </div>
+          <button
+            type="submit"
+            class="fixed bottom-[125px] left-1/2 transform -translate-x-1/2"
+          >
+            <img
+              src="../../public/images/next.svg"
+              alt="Next Page Arrow"
+              class="h-12 w-[14px]"
+            />
+          </button>
 
           <div class="">
             <hr class="border-gray-400 w-[237px] mt-[111px]" />

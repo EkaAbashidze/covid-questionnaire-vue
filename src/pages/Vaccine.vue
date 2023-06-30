@@ -3,7 +3,7 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="">
-        <Form @submit="submitForm($event)">
+        <Form @submit.prevent="submitForm($event)">
           <div class="mb-12">
             <label class="text-lg block mb-2">უკვე აცრილი ხარ?*</label>
             <div class="flex items-center">
@@ -33,8 +33,10 @@
               />
               <label for="vaccineStatus">არა</label>
             </div>
+            <div class="block pl-3 pt-2 h-6 mb-12">
+              <ErrorMessage name="vaccineStatus" class="text-red-500" />
+            </div>
           </div>
-          <ErrorMessage name="vaccineStatus" class="text-red-500" />
 
           <div class="mb-12" v-if="vaccineStatus === true">
             <label class="text-lg block mb-2">აირჩიე რა ეტაპზე ხარ*</label>
@@ -151,7 +153,9 @@
             </div>
           </div>
 
-          <div class="flex justify-center gap-[117px]">
+          <div
+            class="flex justify-center fixed bottom-[125px] left-1/2 transform -translate-x-1/2 gap-[117px]"
+          >
             <router-link to="/questionnaire">
               <img
                 src="../../public/images/back.svg"

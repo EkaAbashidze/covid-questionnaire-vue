@@ -10,9 +10,6 @@ The Covid Questionnaire Vue is an application created with Vue.js that aims to c
 - [Prerequisites](#prerequisites)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
-- [File Structure](#file-structure)
-- [Development](#development)
-- [Database](#database)
 
 #
 ### Features

@@ -197,12 +197,26 @@
               ></textarea>
             </div>
           </div>
-          <button
-            type="submit"
-            class="bg-[#208298] rounded-[42px] w-[180px] h-[56px] text-white"
-          >
-            დასრულება
-          </button>
+
+          <div class="flex flex-col w-[513px] relative">
+            <button
+              type="submit"
+              class="bg-[#208298] rounded-[42px] w-[180px] h-[56px] text-white mb-[125px] self-end"
+            >
+              დასრულება
+            </button>
+            <div
+              class="flex justify-center gap-[117px] self-end absolute -right-12 top-[100px]"
+            >
+              <router-link to="/vaccine">
+                <img
+                  src="../../public/images/back.svg"
+                  alt="Next Page Arrow"
+                  class="h-12 w-[14px]"
+                />
+              </router-link>
+            </div>
+          </div>
         </Form>
       </div>
 
@@ -218,15 +232,6 @@
           class="absolute top-[65px] left-[90px]"
         />
       </div>
-    </div>
-    <div class="flex justify-center gap-[117px]">
-      <router-link to="/vaccine">
-        <img
-          src="../../public/images/back.svg"
-          alt="Next Page Arrow"
-          class="h-12 w-[14px]"
-        />
-      </router-link>
     </div>
   </div>
 </template>

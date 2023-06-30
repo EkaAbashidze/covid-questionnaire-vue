@@ -153,7 +153,9 @@
             </div>
           </div>
 
-          <div class="flex justify-center gap-[117px]">
+          <div
+            class="flex justify-center fixed bottom-[125px] left-1/2 transform -translate-x-1/2 gap-[117px]"
+          >
             <router-link to="/questionnaire">
               <img
                 src="../../public/images/back.svg"

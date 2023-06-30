@@ -54,15 +54,16 @@
             </div>
           </div>
 
-          <div class="flex justify-center mt-10">
-            <button type="submit">
-              <img
-                src="../../public/images/next.svg"
-                alt="Next Page Arrow"
-                class="h-12 w-[14px]"
-              />
-            </button>
-          </div>
+          <button
+            type="submit"
+            class="fixed bottom-[125px] left-1/2 transform -translate-x-1/2"
+          >
+            <img
+              src="../../public/images/next.svg"
+              alt="Next Page Arrow"
+              class="h-12 w-[14px]"
+            />
+          </button>
 
           <div class="">
             <hr class="border-gray-400 w-[237px] mt-[111px]" />

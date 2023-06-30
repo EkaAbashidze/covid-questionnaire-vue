@@ -124,7 +124,9 @@
             </div>
           </div>
 
-          <div class="flex justify-center gap-[117px]">
+          <div
+            class="flex justify-center gap-[117px] fixed bottom-[125px] left-1/2 transform -translate-x-1/2"
+          >
             <router-link to="/identification">
               <img
                 src="../../public/images/back.svg"

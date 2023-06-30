@@ -3,7 +3,7 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="w-[600px]">
-        <Form @submit="submitForm($event)">
+        <Form @submit.prevent="submitForm($event)">
           <div class="mb-12">
             <p class="mb-6">
               რედბერის მთავარი ღირებულება ჩვენი გუნდის თითოეული წევრია. გარემო,

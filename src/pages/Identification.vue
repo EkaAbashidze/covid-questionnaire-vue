@@ -3,7 +3,7 @@
     <Navbar :page="currentPage" />
     <div class="flex mt-12 justify-between">
       <div class="">
-        <Form @submit.prevent="submitForm($event)">
+        <Form @submit="submitForm($event)">
           <div class="">
             <label for="firstName" class="text-lg block mb-2">სახელი*</label>
             <Field

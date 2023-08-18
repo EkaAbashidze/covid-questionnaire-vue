@@ -51,7 +51,7 @@ Before getting started, make sure you have the following dependencies installed:
 
 1\. Clone the Covid Questionnaire repository from GitHub:
 ```sh
-git clone https://github.com/RedberryInternship/ekaterine-abashidze-covid-questionaire.git
+git clone https://github.com/EkaAbashidze/covid-questionnaire-vue.git
 ```
 
 2\. Navigate to the project directory and install the dependencies using npm:
